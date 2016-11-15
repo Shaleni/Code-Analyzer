@@ -1,0 +1,6 @@
+A collection of URLs to github c++ repositories
+
+Functional data structures in C++:
+https://github.com/BartoszMilewski/Okasaki
+
+

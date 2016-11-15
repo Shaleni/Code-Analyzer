@@ -1,0 +1,22 @@
+15 Best Practices for Variable Names
+
+codebuild.blogspot.com/2012/02/15-best-practices-of-variable-method.html
+
+List of what will be considered bad variable naming:
+
+ - starts with a number
+ - starts with an uppercase
+ - contains a symbol
+ - any single character that is NOT i,j,k,n,x,y,z
+ - if is a valid single character that is not int, double, float, long, short, etc (a number variable type)
+ - anything over # characters
+ - has a number at any location but the very last char
+
+ General length standards:
+
+ 1 char for loop counters
+ 1 word for condition/loop variables
+ 1-2 words for methods
+ 2-3 words for classes
+ 3-4 words for globals
+ (above from the blog post)

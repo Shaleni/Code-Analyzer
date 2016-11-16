@@ -4,5 +4,10 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    metrics.cpp
+    metrics.cpp \
+    codeinmain.cpp \
+    comments.cpp \
+    variables.cpp \
+    nesting.cpp \
+    loc.cpp
 

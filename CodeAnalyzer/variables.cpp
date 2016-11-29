@@ -10,3 +10,4 @@ public:
 
 };
 
+// See txt file for standards on variable name quality

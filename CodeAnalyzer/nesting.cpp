@@ -10,3 +10,9 @@ public:
 
 };
 
+/* There should not be excessive use of nesting in a project
+ * Excessive meaning: multiple nested if statements
+ * More than 4 nested loops of any kind
+ */
+
+

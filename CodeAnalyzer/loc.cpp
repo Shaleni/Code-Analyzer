@@ -10,3 +10,8 @@ public:
 
 };
 
+/* Primarily focusing on right tailed distributions/outliers being
+ * "bad".
+ * A normal distribution is optimal.
+ * Left tailed is "average"
+ */

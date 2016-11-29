@@ -1,3 +1,6 @@
+#ifndef NESTING
+#define NESTING
+
 //Class to determine the nesting (control statement quality) in the project
 //Inherits from abstract class Metrics
 class nesting:public Metrics{
@@ -10,9 +13,5 @@ public:
 
 };
 
-/* There should not be excessive use of nesting in a project
- * Excessive meaning: multiple (more than 2) nested if statements
- * More than 4 nested loops of any kind
- */
-
+#endif // NESTING
 

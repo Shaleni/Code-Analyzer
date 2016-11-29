@@ -1,3 +1,5 @@
+#ifndef METRICS
+#define METRICS
 //Abstract metrics class
 class Metrics {
 private:
@@ -15,4 +17,7 @@ void Metrics::printToFile(){
 
 
 
+
+
+#endif // METRICS
 

@@ -11,7 +11,13 @@ SOURCES += main.cpp \
 
 HEADERS += \
     vector.h \
-    dsstring.h
+    dsstring.h \
+    codeinmain.h \
+    comments.h \
+    metrics.h \
+    loc.h \
+    nesting.h \
+    variables.h
 =======
 SOURCES += main.cpp \
     metrics.cpp \

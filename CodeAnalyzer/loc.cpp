@@ -28,10 +28,8 @@ void Loc::printToFileVerbose(ofstream&){
 
 void Loc::evaluate(const char * filePath){
     //create a FileInfo object
-    FileInfo currFile;
-    currFile.setPath(filePath);
-    currFile.determineName();
-    currFile.determineLines();
+    FileInfo currFile (filePath);
+
     //add to vector of FileInfo objects
     files.add(currFile);
 

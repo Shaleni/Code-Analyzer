@@ -2,7 +2,7 @@
 #define COMMENTS
 #include "metrics.h"
 
-class comments:public Metrics{
+class Comments:public Metric{
 private:
 
 protected:

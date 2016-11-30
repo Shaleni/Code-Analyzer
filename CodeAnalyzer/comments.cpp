@@ -4,18 +4,18 @@
 #include "comments.h"
 
 
-    //Prints the short analysis to the file
-    void comments::printToFileShort(){
+//Prints the short analysis to the file
+void Comments::printToFileShort(){
 
 
-    }
+}
 
-    //Prints the verbose analysis to the file
-    void comments::printToFileVerbose(){
+//Prints the verbose analysis to the file
+void Comments::printToFileVerbose(){
 
 
-    }
+}
 
-    void codeInMain::evaluate(char *){
+void Comments::evaluate(char *){
 
-    }
+}

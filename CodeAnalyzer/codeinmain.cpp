@@ -25,18 +25,18 @@
     }
 
 //Prints the short analysis to the file
-void codeInMain::printToFileShort(){
+void CodeInMain::printToFileShort(){
 
 
 }
 
 //Prints the verbose analysis to the file
-void codeInMain::printToFileVerbose(){
+void CodeInMain::printToFileVerbose(){
 
 
 }
 
-void codeInMain::evaluate(char *){
+void CodeInMain::evaluate(char *){
 
 }
 

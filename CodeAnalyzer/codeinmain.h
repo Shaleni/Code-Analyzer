@@ -11,7 +11,7 @@
     4 - 2-5%
     5 - 0-2% */
 
-class codeInMain:public Metrics{
+class CodeInMain:public Metric{
 private:
     int linesInMain;
     int totalLines;

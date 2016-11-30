@@ -1,6 +1,8 @@
 #ifndef CODEANALYZER
 #define CODEANALYZER
 
+#define NUM_METRICS 5
+
 #include "metrics.h"
 
 class CodeAnalyzer {
@@ -12,7 +14,7 @@ private:
     void readDirectory (const char *);
     int isDir(const char*);
 
-    Metric * metrics [5];
+    Metric * metrics [NUM_METRICS];
 
 
 };

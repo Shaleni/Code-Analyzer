@@ -54,7 +54,14 @@ void CodeAnalyzer::readDirectory (const char * loc){
 
                 //Run metrics
                 metrics[0] = new CodeInMain;
-                metrics[0]->evaluate(fullyQualifiedFilename.c_str());
+                metrics[1] = new Loc;
+                metrics[2] = new Comments;
+                metrics[3] = new Variables;
+                metrics[4] = new Nesting;
+
+                for (int i=0; i<NUM_METRICS; i++){
+                    metrics[i]->evaluate(fullyQualifiedFilename.c_str());
+                }
 
 
             }

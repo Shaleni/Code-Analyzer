@@ -13,7 +13,7 @@ public:
     Variables();
     void printToFileShort(ofstream&);
     void printToFileVerbose(ofstream&);
-    void evaulate(const char *);
+    void evaluate(const char *);
 
 };
 

@@ -3,6 +3,7 @@
 #include <dirent.h>
 #include <sys/stat.h>
 #include "vector.h"
+#include <fstream>
 
 #include "metrics.h"
 #include "codeinmain.h"
@@ -15,8 +16,22 @@ CodeAnalyzer::CodeAnalyzer (){
 
 }
 
-void CodeAnalyzer::runMetrics(const char * root) {
+void CodeAnalyzer::runMetrics(const char * root, const char * output, bool verbose) {
     readDirectory (root);
+    writeOutput (output, verbose);
+
+}
+
+void CodeAnalyzer::writeOutput(const char * file, bool verbose){
+    ofstream out;
+    out.open(file);
+    if (out.is_open()){
+        for (int i=0; i<NUM_METRICS;i++){
+            if (verbose) metrics[i]->printToFileVerbose(out);
+            else metrics[i]->printToFileShort(out);
+        }
+    }
+    else cout <<"Unable to open output file" <<endl;
 }
 
 int CodeAnalyzer::isDir(const char *path) {

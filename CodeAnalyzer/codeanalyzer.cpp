@@ -13,12 +13,19 @@
 #include "comments.h"
 
 CodeAnalyzer::CodeAnalyzer (){
-
+    //Initialize metrics
+    metrics[0] = new CodeInMain;
+    metrics[1] = new Loc;
+    metrics[2] = new Comments;
+    metrics[3] = new Variables;
+    metrics[4] = new Nesting;
 }
 
 void CodeAnalyzer::runMetrics(const char * root, const char * output, bool verbose) {
     readDirectory (root);
     writeOutput (output, verbose);
+
+
 
 }
 
@@ -66,13 +73,6 @@ void CodeAnalyzer::readDirectory (const char * loc){
             else if (fileExtension=="h" || fileExtension=="hpp" || fileExtension=="c" || fileExtension=="cpp"){
                 //std::cout << fullyQualifiedFilename <<std::endl;
 
-
-                //Run metrics
-                metrics[0] = new CodeInMain;
-                metrics[1] = new Loc;
-                metrics[2] = new Comments;
-                metrics[3] = new Variables;
-                metrics[4] = new Nesting;
 
                 for (int i=0; i<NUM_METRICS; i++){
                     metrics[i]->evaluate(fullyQualifiedFilename.c_str());

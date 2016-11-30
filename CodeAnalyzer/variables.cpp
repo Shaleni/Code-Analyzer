@@ -1,21 +1,22 @@
 //Class to determine the variable name quality in the project
 //Inherits from abstract class Metricss
 #include "variables.h"
-//constructors
+
+//Constructors
 Variables::Variables(){
 
 }
 
 
 //Prints the short analysis to the file
-void Variables::printToFileShort(ofstream&){
-
+void Variables::printToFileShort(ofstream& out){
+    out << "Printing variables short" <<endl;
 
 }
 
 //Prints the verbose analysis to the file
-void Variables::printToFileVerbose(ofstream&){
-
+void Variables::printToFileVerbose(ofstream& out){
+    out << "Printing variables verbose" <<endl;
 
 }
 

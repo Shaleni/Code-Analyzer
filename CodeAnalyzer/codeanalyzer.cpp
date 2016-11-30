@@ -3,6 +3,7 @@
 #include <dirent.h>
 #include <sys/stat.h>
 #include "vector.h"
+#include <fstream>
 
 #include "metrics.h"
 #include "codeinmain.h"
@@ -12,11 +13,32 @@
 #include "comments.h"
 
 CodeAnalyzer::CodeAnalyzer (){
+    //Initialize metrics
+    metrics[0] = new CodeInMain;
+    metrics[1] = new Loc;
+    metrics[2] = new Comments;
+    metrics[3] = new Variables;
+    metrics[4] = new Nesting;
+}
+
+void CodeAnalyzer::runMetrics(const char * root, const char * output, bool verbose) {
+    readDirectory (root);
+    writeOutput (output, verbose);
+
+
 
 }
 
-void CodeAnalyzer::runMetrics(const char * root) {
-    readDirectory (root);
+void CodeAnalyzer::writeOutput(const char * file, bool verbose){
+    ofstream out;
+    out.open(file);
+    if (out.is_open()){
+        for (int i=0; i<NUM_METRICS;i++){
+            if (verbose) metrics[i]->printToFileVerbose(out);
+            else metrics[i]->printToFileShort(out);
+        }
+    }
+    else cout <<"Unable to open output file" <<endl;
 }
 
 int CodeAnalyzer::isDir(const char *path) {
@@ -51,13 +73,6 @@ void CodeAnalyzer::readDirectory (const char * loc){
             else if (fileExtension=="h" || fileExtension=="hpp" || fileExtension=="c" || fileExtension=="cpp"){
                 //std::cout << fullyQualifiedFilename <<std::endl;
 
-
-                //Run metrics
-                metrics[0] = new CodeInMain;
-                metrics[1] = new Loc;
-                metrics[2] = new Comments;
-                metrics[3] = new Variables;
-                metrics[4] = new Nesting;
 
                 for (int i=0; i<NUM_METRICS; i++){
                     metrics[i]->evaluate(fullyQualifiedFilename.c_str());

@@ -1,6 +1,6 @@
 //Class to determine the nesting (control statement quality) in the project
 //Inherits from abstract class Metrics
-class nesting:public Metrics{
+class nesting{
 private:
 
 protected:

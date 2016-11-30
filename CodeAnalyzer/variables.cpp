@@ -1,6 +1,6 @@
 //Class to determine the variable name quality in the project
 //Inherits from abstract class Metrics
-class variables:public Metrics{
+class variables{
 private:
 
 protected:

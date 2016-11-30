@@ -5,13 +5,16 @@ CONFIG -= qt
 
 HEADERS += \
     vector.h \
-    dsstring.h
+    dsstring.h \
+    codeanalyzer.h
 
 SOURCES += main.cpp \
     metrics.cpp \
     codeinmain.cpp \
+    dsstring.cpp \
     comments.cpp \
     variables.cpp \
     nesting.cpp \
-    loc.cpp
+    loc.cpp \
+    codeanalyzer.cpp
 

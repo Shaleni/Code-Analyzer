@@ -2,7 +2,10 @@
 //Inherits from abstract class Metrics
 
 #include "comments.h"
+//construtor
+Comments::Comments(){
 
+}
 
 //Prints the short analysis to the file
 void Comments::printToFileShort(){

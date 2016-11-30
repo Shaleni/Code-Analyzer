@@ -10,6 +10,7 @@ private:
 protected:
 
 public:
+    Variables();
     void printToFileShort();
     void printToFileVerbose();
     void evaulate(char *);

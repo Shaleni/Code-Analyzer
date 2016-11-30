@@ -10,6 +10,7 @@ private:
 protected:
 
 public:
+    Loc();
     void printToFileShort();
     void printToFileVerbose();
 

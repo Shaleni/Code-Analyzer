@@ -9,6 +9,7 @@ private:
 protected:
 
 public:
+    Nesting();
     void printToFileShort();
     void printToFileVerbose();
     void evaluate (char *);

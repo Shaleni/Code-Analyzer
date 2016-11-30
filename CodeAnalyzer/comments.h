@@ -8,6 +8,7 @@ private:
 protected:
 
 public:
+    Comments();
     void printToFileShort();
     void printToFileVerbose();
     void evaluate (char *);

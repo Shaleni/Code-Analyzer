@@ -20,6 +20,7 @@ private:
 protected:
 
 public:
+    CodeInMain();
     void printToFileShort();
     void printToFileVerbose();
     void evaluate(char *);

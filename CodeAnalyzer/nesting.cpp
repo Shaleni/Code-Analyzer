@@ -1,8 +1,10 @@
 //Class to determine the nesting (control statement quality) in the project
 //Inherits from abstract class Metrics
 #include "nesting.h"
+//constructor
+Nesting::Nesting(){
 
-
+}
 
 //Prints the short analysis to the file
 void Nesting::printToFileShort(){

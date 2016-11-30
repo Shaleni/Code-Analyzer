@@ -4,17 +4,21 @@
 
 
 
-    //Prints the short analysis to the file
-    void variables::printToFileShort(){
+//Prints the short analysis to the file
+void variables::printToFileShort(){
 
 
-    }
+}
 
-    //Prints the verbose analysis to the file
-    void variables::printToFileVerbose(){
+//Prints the verbose analysis to the file
+void variables::printToFileVerbose(){
 
 
-    }
+}
+
+void codeInMain::evaluate(char *){
+
+}
 
 
 // See txt file for standards on variable name quality

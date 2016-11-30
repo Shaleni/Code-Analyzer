@@ -15,3 +15,7 @@
 
 
     }
+
+    void codeInMain::evaluate(char *){
+
+    }

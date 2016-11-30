@@ -12,18 +12,25 @@ using namespace std;
 
 class FileInfo{
 private:
-    int lines;
+    int codeLines;
+    int commentLines;
     String fileName;
     String filePath;
 
+    void countCodeLines();
+    void countCommentLines();
+    void determineName();
+
 public:
     FileInfo();
+    FileInfo (const char *);
     void setPath(const char *);
     String getPath();
-    void determineName();
+
     String getName();
-    void determineLines();
-    int getLines();
+
+    int getCodeLines();
+    int getCommentLines();
 };
 
 #endif // FILEINFO

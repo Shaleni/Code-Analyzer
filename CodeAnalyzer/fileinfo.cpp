@@ -7,10 +7,15 @@ FileInfo::FileInfo(){
 }
 
 FileInfo::FileInfo(const char * path){
+    codeLines=0;
+    commentLines=0;
     filePath = path;
     determineName();
+    determineExtension();
+
     countCodeLines();
     countCommentLines();
+
 }
 
 void FileInfo::setPath(const char* fullPath){
@@ -21,18 +26,31 @@ String FileInfo::getPath(){
     return filePath;
 }
 
+String FileInfo::getName(){
+    return fileName;
+}
+
+int FileInfo::getCodeLines(){
+    return codeLines;
+}
+int FileInfo::getCommentLines(){
+    return commentLines;
+}
+
 void FileInfo::determineName(){
     int loc=filePath.size()-1;
-
     while (filePath[loc]!='/'){
         loc-=1;
     }
-
     fileName = filePath.substring(loc+1, filePath.size());
 }
 
-String FileInfo::getName(){
-    return fileName;
+void FileInfo::determineExtension(){
+    int loc=filePath.size()-1;
+    while (filePath[loc]!='.'){
+        loc-=1;
+    }
+    fileExtension = filePath.substring(loc+1, filePath.size());
 }
 
 void FileInfo::countCodeLines(){
@@ -49,10 +67,11 @@ void FileInfo::countCodeLines(){
                 count++;
             }
         }
+        fin.close();
     } else {
         cout<<"Error. File failed to open"<<endl;
     }
-    fin.close();
+
 
     codeLines=count;
 
@@ -84,13 +103,7 @@ void FileInfo::countCommentLines(){
     }
 
     commentLines=count;
-    cout << commentLines <<endl;
+    //cout << commentLines <<endl;
 }
 
-int FileInfo::getCodeLines(){
-    return codeLines;
-}
-int FileInfo::getCommentLines(){
 
-    return commentLines;
-}

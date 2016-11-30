@@ -3,6 +3,7 @@
 #include <dirent.h>
 #include <sys/stat.h>
 #include "vector.h"
+#include "metrics.h"
 
 CodeAnalyzer::CodeAnalyzer (){
 

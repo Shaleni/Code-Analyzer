@@ -10,6 +10,12 @@ private:
     int score;
     int lines;
     Vector<FileInfo> files;
+    Vector<FileInfo> h;
+    Vector<FileInfo> cpp;
+
+    void separateByExtension();
+    void determineOutliers();
+    void sortByLines();
 protected:
 
 public:

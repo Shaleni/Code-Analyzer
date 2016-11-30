@@ -4,6 +4,7 @@
 FileInfo::FileInfo(){
     codeLines=0;
     commentLines=0;
+    fileScore=0;
 }
 
 FileInfo::FileInfo(const char * path){
@@ -51,6 +52,10 @@ void FileInfo::determineExtension(){
         loc-=1;
     }
     fileExtension = filePath.substring(loc+1, filePath.size());
+}
+
+String FileInfo::getExtension(){
+    return fileExtension;
 }
 
 void FileInfo::countCodeLines(){

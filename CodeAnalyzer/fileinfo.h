@@ -12,6 +12,7 @@ using namespace std;
 
 class FileInfo{
 private:
+    int fileScore;
     int codeLines;
     int commentLines;
     String fileName;
@@ -28,7 +29,7 @@ public:
     FileInfo (const char *);
     void setPath(const char *);
     String getPath();
-
+    String getExtension();
     String getName();
 
     int getCodeLines();

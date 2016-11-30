@@ -14,7 +14,11 @@
         String fileName = partParts[pathParts.size()-1];
 
         //check if the current file is main.
-            //if it is main, total the lines of code in main into the variable linesInMain
+
+        //if it is main, total the lines of code in main into the variable linesInMain
+        //for main, the number of lines is equivalent to the number of semicolons
+        //in that file.
+
         //otherwise, sum lines of code into totalLines
         //calculate the percent
         //score based on score table

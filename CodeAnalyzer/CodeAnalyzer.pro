@@ -6,10 +6,15 @@ CONFIG -= qt
 HEADERS += \
     vector.h \
     dsstring.h \
-    codeanalyzer.h
+    codeanalyzer.h \
+    codeinmain.h \
+    comments.h \
+    metrics.h \
+    loc.h \
+    nesting.h \
+    variables.h
 
 SOURCES += main.cpp \
-    metrics.cpp \
     codeinmain.cpp \
     dsstring.cpp \
     comments.cpp \

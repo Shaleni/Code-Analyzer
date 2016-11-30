@@ -1,14 +1,20 @@
 //Class to determine the lines of code per file in the project
 //Inherits from abstract class Metrics
-class loc{
-private:
+#include "loc.h"
 
-protected:
 
-public:
-    void printToFile(){}
+    //Prints the short analysis to the file
+    void loc::printToFileShort(){
 
-};
+
+    }
+
+    //Prints the verbose analysis to the file
+    void loc::printToFileVerbose(){
+
+
+    }
+
 
 /* Primarily focusing on right tailed distributions/outliers being
  * "bad".

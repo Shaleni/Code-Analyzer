@@ -2,7 +2,23 @@
 //Inherits from abstract class Metrics
 
 #include "codeinmain.h"
+    //evaluates the metric
+    void codeInMain::evaluate(char* filePath){
+        //convert to string
+        String fullPath(filePath);
 
+        //split by the character /
+        Vector<String>pathParts = fullpath.split('/');
+
+        //get the file name, will be the last part in the vector
+        String fileName = partParts[pathParts.size()-1];
+
+        //check if the current file is main.
+            //if it is main, total the lines of code in main into the variable linesInMain
+        //otherwise, sum lines of code into totalLines
+        //calculate the percent
+        //score based on score table
+    }
 
     //Prints the short analysis to the file
     void codeInMain::printToFileShort(){

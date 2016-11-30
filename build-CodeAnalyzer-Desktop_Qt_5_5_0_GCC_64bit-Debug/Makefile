@@ -49,21 +49,21 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../CodeAnalyzer/main.cpp \
-		../CodeAnalyzer/dsstring.cpp \
-		../CodeAnalyzer/main.cpp \
 		../CodeAnalyzer/codeinmain.cpp \
+		../CodeAnalyzer/dsstring.cpp \
 		../CodeAnalyzer/comments.cpp \
 		../CodeAnalyzer/variables.cpp \
 		../CodeAnalyzer/nesting.cpp \
-		../CodeAnalyzer/loc.cpp 
+		../CodeAnalyzer/loc.cpp \
+		../CodeAnalyzer/codeanalyzer.cpp 
 OBJECTS       = main.o \
-		dsstring.o \
-		main.o \
 		codeinmain.o \
+		dsstring.o \
 		comments.o \
 		variables.o \
 		nesting.o \
-		loc.o
+		loc.o \
+		codeanalyzer.o
 DIST          = ../../Qt/5.5/gcc_64/mkspecs/features/spec_pre.prf \
 		../../Qt/5.5/gcc_64/mkspecs/common/unix.conf \
 		../../Qt/5.5/gcc_64/mkspecs/common/linux.conf \
@@ -164,19 +164,20 @@ DIST          = ../../Qt/5.5/gcc_64/mkspecs/features/spec_pre.prf \
 		../../Qt/5.5/gcc_64/mkspecs/features/lex.prf \
 		../CodeAnalyzer/CodeAnalyzer.pro vector.h \
 		dsstring.h \
+		codeanalyzer.h \
 		codeinmain.h \
 		comments.h \
 		metrics.h \
 		loc.h \
 		nesting.h \
 		variables.h ../CodeAnalyzer/main.cpp \
-		../CodeAnalyzer/dsstring.cpp \
-		../CodeAnalyzer/main.cpp \
 		../CodeAnalyzer/codeinmain.cpp \
+		../CodeAnalyzer/dsstring.cpp \
 		../CodeAnalyzer/comments.cpp \
 		../CodeAnalyzer/variables.cpp \
 		../CodeAnalyzer/nesting.cpp \
-		../CodeAnalyzer/loc.cpp
+		../CodeAnalyzer/loc.cpp \
+		../CodeAnalyzer/codeanalyzer.cpp
 QMAKE_TARGET  = CodeAnalyzer
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = CodeAnalyzer
@@ -446,21 +447,16 @@ compiler_clean:
 
 ####### Compile
 
-main.o: ../CodeAnalyzer/main.cpp ../CodeAnalyzer/dsstring.h \
-		../CodeAnalyzer/vector.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../CodeAnalyzer/main.cpp
-
-dsstring.o: ../CodeAnalyzer/dsstring.cpp ../CodeAnalyzer/dsstring.h \
-		../CodeAnalyzer/vector.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dsstring.o ../CodeAnalyzer/dsstring.cpp
-
-main.o: ../CodeAnalyzer/main.cpp ../CodeAnalyzer/dsstring.h \
-		../CodeAnalyzer/vector.h
+main.o: ../CodeAnalyzer/main.cpp ../CodeAnalyzer/codeanalyzer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../CodeAnalyzer/main.cpp
 
 codeinmain.o: ../CodeAnalyzer/codeinmain.cpp ../CodeAnalyzer/codeinmain.h \
 		../CodeAnalyzer/metrics.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o codeinmain.o ../CodeAnalyzer/codeinmain.cpp
+
+dsstring.o: ../CodeAnalyzer/dsstring.cpp ../CodeAnalyzer/dsstring.h \
+		../CodeAnalyzer/vector.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dsstring.o ../CodeAnalyzer/dsstring.cpp
 
 comments.o: ../CodeAnalyzer/comments.cpp ../CodeAnalyzer/comments.h \
 		../CodeAnalyzer/metrics.h
@@ -477,6 +473,11 @@ nesting.o: ../CodeAnalyzer/nesting.cpp ../CodeAnalyzer/nesting.h \
 loc.o: ../CodeAnalyzer/loc.cpp ../CodeAnalyzer/loc.h \
 		../CodeAnalyzer/metrics.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o loc.o ../CodeAnalyzer/loc.cpp
+
+codeanalyzer.o: ../CodeAnalyzer/codeanalyzer.cpp ../CodeAnalyzer/codeanalyzer.h \
+		../CodeAnalyzer/dsstring.h \
+		../CodeAnalyzer/vector.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o codeanalyzer.o ../CodeAnalyzer/codeanalyzer.cpp
 
 ####### Install
 

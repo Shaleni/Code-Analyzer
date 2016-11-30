@@ -5,9 +5,9 @@ using namespace std;
 
 int main( int argc, char* const argv[] )
 {
-    if (argc==2){
+    if (argc==4){
         CodeAnalyzer myAnalyzer;
-        myAnalyzer.runMetrics(argv[1]);
+        myAnalyzer.runMetrics(argv[2]);
 
     }
     else {

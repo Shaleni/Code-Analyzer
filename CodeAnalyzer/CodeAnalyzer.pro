@@ -12,7 +12,8 @@ HEADERS += \
     metrics.h \
     loc.h \
     nesting.h \
-    variables.h
+    variables.h \
+    fileinfo.h
 
 SOURCES += main.cpp \
     codeinmain.cpp \
@@ -21,5 +22,6 @@ SOURCES += main.cpp \
     variables.cpp \
     nesting.cpp \
     loc.cpp \
-    codeanalyzer.cpp
+    codeanalyzer.cpp \
+    fileinfo.cpp
 

@@ -3,7 +3,8 @@
 #include "loc.h"
 //constructor
 Loc::Loc(){
-
+    score=0;
+    lines=0;
 }
 
 //Prints the short analysis to the file
@@ -25,6 +26,13 @@ void Loc::printToFileVerbose(ofstream&){
  * Left tailed is "average"
  */
 
-void Loc::evaluate(const char *){
-
+void Loc::evaluate(const char * filePath){
+    //create a FileInfo object
+    FileInfo currFile;
+    currFile.setPath(filePath);
+    currFile.determineName();
+    currFile.determineLines();
+    //add to vector of FileInfo objects
+    files.add(currFile);
 }
+

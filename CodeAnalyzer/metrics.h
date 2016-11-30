@@ -2,6 +2,8 @@
 #define METRICS
 
 #include <fstream>
+#include "dsstring.h"
+#include "vector.h"
 
 using namespace std;
 //Abstract metrics class

@@ -12,7 +12,7 @@ protected:
 public:
     void printToFileShort();
     void printToFileVerbose();
-    int evaulate();
+    int evaulate(char *);
 
 };
 

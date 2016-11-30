@@ -18,7 +18,7 @@ protected:
 public:
     void printToFileShort();
     void printToFileVerbose();
-    int evaluate();
+    int evaluate(char *);
 };
 
 

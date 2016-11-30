@@ -24,4 +24,6 @@ void Comments::printToFileVerbose(ofstream&){
 void Comments::evaluate(const char * filePath){
     FileInfo info (filePath);
 
+
+
 }

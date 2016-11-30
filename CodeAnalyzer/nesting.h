@@ -11,6 +11,7 @@ protected:
 public:
     void printToFileShort();
     void printToFileVerbose();
+    void evaluate (char *);
 
 };
 

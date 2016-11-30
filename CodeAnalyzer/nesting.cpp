@@ -4,17 +4,21 @@
 
 
 
-    //Prints the short analysis to the file
-    void nesting::printToFileShort(){
+//Prints the short analysis to the file
+void nesting::printToFileShort(){
 
 
-    }
+}
 
-    //Prints the verbose analysis to the file
-    void nesting::printToFileVerbose(){
+//Prints the verbose analysis to the file
+void nesting::printToFileVerbose(){
 
 
-    }
+}
+
+void codeInMain::evaluate(char *){
+
+}
 
 /* There should not be excessive use of nesting in a project
  * Excessive meaning: multiple (more than 2) nested if statements

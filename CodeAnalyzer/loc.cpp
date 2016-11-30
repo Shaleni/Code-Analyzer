@@ -7,13 +7,13 @@ Loc::Loc(){
 }
 
 //Prints the short analysis to the file
-void Loc::printToFileShort(){
+void Loc::printToFileShort(ofstream&){
 
 
 }
 
 //Prints the verbose analysis to the file
-void Loc::printToFileVerbose(){
+void Loc::printToFileVerbose(ofstream&){
 
 
 }
@@ -24,3 +24,7 @@ void Loc::printToFileVerbose(){
  * A normal distribution is optimal.
  * Left tailed is "average"
  */
+
+void Loc::evaluate(const char *){
+
+}

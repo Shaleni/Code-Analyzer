@@ -6,14 +6,14 @@
 //Inherits from abstract class Metrics
 class Variables:public Metric{
 private:
-
+    int score;
 protected:
 
 public:
     Variables();
-    void printToFileShort();
-    void printToFileVerbose();
-    void evaulate(char *);
+    void printToFileShort(ofstream&);
+    void printToFileVerbose(ofstream&);
+    void evaulate(const char *);
 
 };
 

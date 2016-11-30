@@ -7,18 +7,18 @@ Nesting::Nesting(){
 }
 
 //Prints the short analysis to the file
-void Nesting::printToFileShort(){
+void Nesting::printToFileShort(ofstream&){
 
 
 }
 
 //Prints the verbose analysis to the file
-void Nesting::printToFileVerbose(){
+void Nesting::printToFileVerbose(ofstream&){
 
 
 }
 
-void Nesting::evaluate(char *){
+void Nesting::evaluate(const char *){
 
 }
 

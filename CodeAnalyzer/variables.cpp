@@ -8,18 +8,18 @@ Variables::Variables(){
 
 
 //Prints the short analysis to the file
-void Variables::printToFileShort(){
+void Variables::printToFileShort(ofstream&){
 
 
 }
 
 //Prints the verbose analysis to the file
-void Variables::printToFileVerbose(){
+void Variables::printToFileVerbose(ofstream&){
 
 
 }
 
-void Variables::evaulate(char *){
+void Variables::evaulate(const char *){
 
 }
 

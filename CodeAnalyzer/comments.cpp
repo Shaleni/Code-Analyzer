@@ -8,17 +8,17 @@ Comments::Comments(){
 }
 
 //Prints the short analysis to the file
-void Comments::printToFileShort(){
+void Comments::printToFileShort(ofstream&){
 
 
 }
 
 //Prints the verbose analysis to the file
-void Comments::printToFileVerbose(){
+void Comments::printToFileVerbose(ofstream&){
 
 
 }
 
-void Comments::evaluate(char *){
+void Comments::evaluate(const char *){
 
 }

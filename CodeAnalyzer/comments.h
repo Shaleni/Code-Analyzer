@@ -4,14 +4,14 @@
 
 class Comments:public Metric{
 private:
-
+    int score;
 protected:
 
 public:
     Comments();
-    void printToFileShort();
-    void printToFileVerbose();
-    void evaluate (char *);
+    void printToFileShort(ofstream&);
+    void printToFileVerbose(ofstream&);
+    void evaluate (const char *);
 
 };
 

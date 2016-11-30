@@ -6,13 +6,14 @@
 //Inherits from abstract class Metrics
 class Loc:public Metric{
 private:
-
+    int score;
 protected:
 
 public:
     Loc();
-    void printToFileShort();
-    void printToFileVerbose();
+    void printToFileShort(ofstream&);
+    void printToFileVerbose(ofstream&);
+    void evaluate(const char *);
 
 };
 

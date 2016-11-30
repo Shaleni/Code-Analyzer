@@ -2,6 +2,8 @@
 //Inherits from abstract class Metrics
 
 #include "comments.h"
+#include "fileinfo.h"
+
 //construtor
 Comments::Comments(){
 
@@ -19,6 +21,7 @@ void Comments::printToFileVerbose(ofstream&){
 
 }
 
-void Comments::evaluate(const char *){
+void Comments::evaluate(const char * filePath){
+    FileInfo info (filePath);
 
 }

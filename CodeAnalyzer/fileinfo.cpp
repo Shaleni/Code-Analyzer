@@ -2,7 +2,15 @@
 
 
 FileInfo::FileInfo(){
-    lines=0;
+    codeLines=0;
+    commentLines=0;
+}
+
+FileInfo::FileInfo(const char * path){
+    filePath = path;
+    determineName();
+    countCodeLines();
+    countCommentLines();
 }
 
 void FileInfo::setPath(const char* fullPath){
@@ -27,7 +35,7 @@ String FileInfo::getName(){
     return fileName;
 }
 
-void FileInfo::determineLines(){
+void FileInfo::countCodeLines(){
     int count=0;
     char ch;
     fstream fin;
@@ -46,9 +54,43 @@ void FileInfo::determineLines(){
     }
     fin.close();
 
-    lines=count;
+    codeLines=count;
+
 }
 
-int FileInfo::getLines(){
-    return lines;
+void FileInfo::countCommentLines(){
+    int count=0;
+    char current;
+    char previous;
+    fstream fin;
+    fin.open(filePath.c_str());
+
+    //count the number of lines in a file. a line is counted for every ; and {
+    if (fin.is_open()){
+        //read file character by character.
+        while (fin>>current){
+            if (current=='/' && previous=='/'){
+                count++;
+
+            }
+            else{
+
+            }
+            previous = current;
+        }
+        fin.close();
+    } else {
+        cout<<"Error. File failed to open"<<endl;
+    }
+
+    commentLines=count;
+    cout << commentLines <<endl;
+}
+
+int FileInfo::getCodeLines(){
+    return codeLines;
+}
+int FileInfo::getCommentLines(){
+
+    return commentLines;
 }

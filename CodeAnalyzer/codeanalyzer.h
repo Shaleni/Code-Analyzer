@@ -1,0 +1,5 @@
+#ifndef CODEANALYZER
+#define CODEANALYZER
+
+#endif // CODEANALYZER
+

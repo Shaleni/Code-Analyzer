@@ -12,13 +12,16 @@
 
 class codeInMain:public Metrics{
 private:
+    int linesInMain;
+    int totalLines;
+    double percent;
 
 protected:
 
 public:
     void printToFileShort();
     void printToFileVerbose();
-    int evaluate();
+    void evaluate(char *);
 };
 
 

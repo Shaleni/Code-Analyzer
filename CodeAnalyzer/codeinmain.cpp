@@ -2,7 +2,14 @@
 //Inherits from abstract class Metrics
 
 #include "codeinmain.h"
-
+    //evaluates the metric
+    void codeInMain::evaluate(char* filePath){
+        //check if the current file is main.
+            //if it is main, total the lines of code in main into the variable linesInMain
+        //otherwise, sum lines of code into totalLines
+        //calculate the percent
+        //score based on score table
+    }
 
     //Prints the short analysis to the file
     void codeInMain::printToFileShort(){

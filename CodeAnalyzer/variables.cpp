@@ -1,6 +1,7 @@
 //Class to determine the variable name quality in the project
-//Inherits from abstract class Metrics
+//Inherits from abstract class Metricss
 #include "variables.h"
+
 
 
     //Prints the short analysis to the file

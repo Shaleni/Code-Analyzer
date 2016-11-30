@@ -1,5 +1,6 @@
 //Class to determine the quality of comments in the project
 //Inherits from abstract class Metrics
+
 #include "comments.h"
 
 

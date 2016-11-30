@@ -16,10 +16,12 @@ private:
     int commentLines;
     String fileName;
     String filePath;
+    String fileExtension;
 
     void countCodeLines();
     void countCommentLines();
     void determineName();
+    void determineExtension();
 
 public:
     FileInfo();

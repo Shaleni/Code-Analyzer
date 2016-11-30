@@ -34,5 +34,7 @@ void Loc::evaluate(const char * filePath){
     currFile.determineLines();
     //add to vector of FileInfo objects
     files.add(currFile);
+
+    cout<<currFile.getLines()<<endl;
 }
 

@@ -1,13 +1,19 @@
 //Class to determine the variable name quality in the project
 //Inherits from abstract class Metrics
-class variables:public Metrics{
-private:
+#include "variables.h"
 
-protected:
 
-public:
-    void printToFile(){}
+    //Prints the short analysis to the file
+    void variables::printToFileShort(){
 
-};
+
+    }
+
+    //Prints the verbose analysis to the file
+    void variables::printToFileVerbose(){
+
+
+    }
+
 
 // See txt file for standards on variable name quality

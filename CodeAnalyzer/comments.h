@@ -8,7 +8,8 @@ private:
 protected:
 
 public:
-    void printToFile(){}
+    void printToFileShort();
+    void printToFileVerbose();
 
 };
 

@@ -1,6 +1,6 @@
 #ifndef LOC
 #define LOC
-
+#include "metrics.h"
 
 //Class to determine the lines of code per file in the project
 //Inherits from abstract class Metrics
@@ -10,7 +10,8 @@ private:
 protected:
 
 public:
-    void printToFile(){}
+    void printToFileShort();
+    void printToFileVerbose();
 
 };
 

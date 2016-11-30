@@ -7,13 +7,11 @@ private:
 protected:
 
 public:
-    virtual void printToFile();
+    virtual void printToFileShort(){}
+    virtual void printToFileVerbose(){}
+    virtual int evaluate(){}
 };
 
-void Metrics::printToFile(){
-
-
-}
 
 
 

@@ -1,5 +1,6 @@
 #ifndef VARIABLES
 #define VARIABLES
+#include "metrics.h"
 
 //Class to determine the variable name quality in the project
 //Inherits from abstract class Metrics
@@ -9,7 +10,9 @@ private:
 protected:
 
 public:
-    void printToFile(){}
+    void printToFileShort();
+    void printToFileVerbose();
+    int evaulate();
 
 };
 

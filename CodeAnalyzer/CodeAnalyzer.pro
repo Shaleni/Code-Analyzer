@@ -3,8 +3,6 @@ CONFIG += console c++11
 CONFIG -= app_bundle
 CONFIG -= qt
 
-<<<<<<< HEAD
-
 
 SOURCES += main.cpp \
     dsstring.cpp
@@ -18,13 +16,12 @@ HEADERS += \
     loc.h \
     nesting.h \
     variables.h
-=======
+
 SOURCES += main.cpp \
-    metrics.cpp \
     codeinmain.cpp \
     comments.cpp \
     variables.cpp \
     nesting.cpp \
     loc.cpp
->>>>>>> quality
+
 

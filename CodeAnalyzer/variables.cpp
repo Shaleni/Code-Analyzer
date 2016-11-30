@@ -19,7 +19,7 @@ void Variables::printToFileVerbose(ofstream&){
 
 }
 
-void Variables::evaulate(const char *){
+void Variables::evaluate(const char *){
 
 }
 

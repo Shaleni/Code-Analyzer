@@ -13,14 +13,22 @@ CodeInMain::CodeInMain(){
 
 //evaluates the metric
 void CodeInMain::evaluate(const char* filePath){
+
     //convert to string
     String fullPath(filePath);
 
-    //split by the character /
-    Vector<String>pathParts = fullPath.split('/');
+    //split function is buggy
+    //    //split by the character /
+    //    Vector<String>pathParts = fullPath.split('/');
 
-    //get the file name, will be the last part in the vector
-    String fileName = pathParts[pathParts.size()-1];
+    //    //get the file name, will be the last part in the vector
+    //    String fileName = pathParts[pathParts.size()-1];
+
+    //check if the file name is either main.cpp or main.c
+    if (fullPath.substring(fullPath.size()-8, fullPath.size())=="main.cpp" ||
+            fullPath.substring(fullPath.size()-6, fullPath.size())=="main.c"){
+        cout<<"is main"<<endl;
+    }
 
     //check if the current file is main.
 

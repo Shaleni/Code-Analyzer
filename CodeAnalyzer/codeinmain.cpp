@@ -47,15 +47,11 @@ void CodeInMain::evaluate(const char* filePath){
 
     cout<<"Lines in main: "<<linesInMain<<endl;
     cout<<"total lines of code: "<<totalLines<<endl;
+}
 
-
-    //if it is main, total the lines of code in main into the variable linesInMain
-    //for main, the number of lines is equivalent to the number of semicolons
-    //in that file plus the number of open braces.
-
-    //otherwise, sum lines of code into totalLines
-    //calculate the percent
-    //score based on score table
+//calculates the percent of code in main
+void CodeInMain::calculatePercent(){
+    percent=(linesInMain/totalLines)*100;
 }
 
 //Prints the short analysis to the file

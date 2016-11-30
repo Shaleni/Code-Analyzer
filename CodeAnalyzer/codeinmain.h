@@ -27,6 +27,7 @@ public:
     void printToFileShort(ofstream&);
     void printToFileVerbose(ofstream&);
     void evaluate(const char *);
+    void calculatePercent();
 };
 
 

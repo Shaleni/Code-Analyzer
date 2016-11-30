@@ -11,10 +11,9 @@ private:
 protected:
 
 public:
-    virtual Metric()=0;
     virtual void printToFileShort(ofstream&)=0;
     virtual void printToFileVerbose(ofstream&)=0;
-    virtual void evaluate(char *)=0;
+    virtual void evaluate(const char *)=0;
 };
 
 

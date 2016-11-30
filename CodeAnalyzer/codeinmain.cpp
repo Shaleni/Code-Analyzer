@@ -2,21 +2,25 @@
 //Inherits from abstract class Metrics
 
 #include "codeinmain.h"
+
+
+using namespace std;
+
 //constructor
 CodeInMain::CodeInMain(){
 
 }
 
 //evaluates the metric
-void codeInMain::evaluate(char* filePath){
+void CodeInMain::evaluate(const char* filePath){
     //convert to string
     String fullPath(filePath);
 
     //split by the character /
-    Vector<String>pathParts = fullpath.split('/');
+    Vector<String>pathParts = fullPath.split('/');
 
     //get the file name, will be the last part in the vector
-    String fileName = partParts[pathParts.size()-1];
+    String fileName = pathParts[pathParts.size()-1];
 
     //check if the current file is main.
 
@@ -30,20 +34,17 @@ void codeInMain::evaluate(char* filePath){
 }
 
 //Prints the short analysis to the file
-void CodeInMain::printToFileShort(){
+void CodeInMain::printToFileShort(ofstream&){
 
 
 }
 
 //Prints the verbose analysis to the file
-void CodeInMain::printToFileVerbose(){
+void CodeInMain::printToFileVerbose(ofstream&){
 
 
 }
 
-void CodeInMain::evaluate(char *){
-
-}
 
 /* The percentage of code in main should not exceed 2% of the
  * total amount of code in the project */

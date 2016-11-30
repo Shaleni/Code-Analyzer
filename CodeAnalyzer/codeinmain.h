@@ -11,19 +11,22 @@
     4 - 2-5%
     5 - 0-2% */
 
+using namespace std;
+
 class CodeInMain:public Metric{
 private:
     int linesInMain;
     int totalLines;
     double percent;
+    int score;
 
 protected:
 
 public:
     CodeInMain();
-    void printToFileShort();
-    void printToFileVerbose();
-    void evaluate(char *);
+    void printToFileShort(ofstream&);
+    void printToFileVerbose(ofstream&);
+    void evaluate(const char *);
 };
 
 

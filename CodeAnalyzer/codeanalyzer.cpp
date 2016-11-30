@@ -3,7 +3,13 @@
 #include <dirent.h>
 #include <sys/stat.h>
 #include "vector.h"
+
 #include "metrics.h"
+#include "codeinmain.h"
+#include "loc.h"
+#include "nesting.h"
+#include "variables.h"
+#include "comments.h"
 
 CodeAnalyzer::CodeAnalyzer (){
 
@@ -47,7 +53,8 @@ void CodeAnalyzer::readDirectory (const char * loc){
 
 
                 //Run metrics
-
+                metrics[0] = new CodeInMain;
+                metrics[0]->evaluate(fullyQualifiedFilename.c_str());
 
 
             }

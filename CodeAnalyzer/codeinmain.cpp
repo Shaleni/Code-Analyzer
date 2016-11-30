@@ -8,7 +8,8 @@ using namespace std;
 
 //constructor
 CodeInMain::CodeInMain(){
-
+    linesInMain=0;
+    totalLines=0;
 }
 
 //evaluates the metric
@@ -17,20 +18,36 @@ void CodeInMain::evaluate(const char* filePath){
     //convert to string
     String fullPath(filePath);
 
-    //split function is buggy
-    //    //split by the character /
-    //    Vector<String>pathParts = fullPath.split('/');
+    int count=0;
+    char ch;
+    fstream fin;
+    fin.open(filePath);
 
-    //    //get the file name, will be the last part in the vector
-    //    String fileName = pathParts[pathParts.size()-1];
-
+    //count the number of lines in a file. a line is counted for every ; and {
+    if (fin.is_open()){
+        cout<<"File opened successfully"<<endl;
+        //read file character by character.
+        while (fin>>ch){
+            if (ch==';' || ch=='{'){
+                count++;
+            }
+        }
+    } else {
+        cout<<"Error. File failed to open"<<endl;
+    }
+    fin.close();
+    cout<<"count: "<<count<<endl;
     //check if the file name is either main.cpp or main.c
     if (fullPath.substring(fullPath.size()-8, fullPath.size())=="main.cpp" ||
             fullPath.substring(fullPath.size()-6, fullPath.size())=="main.c"){
-        cout<<"is main"<<endl;
+        linesInMain = count;
+    } else {
+        totalLines += count;
     }
 
-    //check if the current file is main.
+    cout<<"Lines in main: "<<linesInMain<<endl;
+    cout<<"total lines of code: "<<totalLines<<endl;
+
 
     //if it is main, total the lines of code in main into the variable linesInMain
     //for main, the number of lines is equivalent to the number of semicolons

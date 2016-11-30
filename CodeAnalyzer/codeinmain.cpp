@@ -17,7 +17,7 @@
 
         //if it is main, total the lines of code in main into the variable linesInMain
         //for main, the number of lines is equivalent to the number of semicolons
-        //in that file.
+        //in that file plus the number of open braces.
 
         //otherwise, sum lines of code into totalLines
         //calculate the percent

@@ -1,6 +1,7 @@
 #ifndef CODEINMAIN
 #define CODEINMAIN
 #include "metrics.h"
+#include "dsstring.h"
 
 /* Scoring:
     0 - 75+% in main

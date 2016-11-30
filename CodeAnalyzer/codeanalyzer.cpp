@@ -78,7 +78,6 @@ void CodeAnalyzer::readDirectory (const char * loc){
                     metrics[i]->evaluate(fullyQualifiedFilename.c_str());
                 }
 
-
             }
             else{
                 //Is a non-code file. Do nothing.

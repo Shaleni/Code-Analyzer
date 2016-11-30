@@ -4,12 +4,12 @@
 #include "dsstring.h"
 
 /* Scoring:
-    0 - 75+% in main
-    1 - 50-75%
-    2 - 20-50%
-    3 - 5-20%
-    4 - 2-5%
-    5 - 0-2% */
+    5 - 75+% in main
+    4 - 50-75%
+    3 - 20-50%
+    2 - 5-20%
+    1 - 2-5%
+    0 - 0-2% */
 
 using namespace std;
 
@@ -28,10 +28,9 @@ public:
     void printToFileVerbose(ofstream&);
     void evaluate(const char *);
     void calculatePercent();
+    void determineScore();
+
 };
-
-
-
 
 #endif // CODEINMAIN
 

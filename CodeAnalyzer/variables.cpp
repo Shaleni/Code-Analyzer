@@ -5,18 +5,18 @@
 
 
 //Prints the short analysis to the file
-void variables::printToFileShort(){
+void Variables::printToFileShort(){
 
 
 }
 
 //Prints the verbose analysis to the file
-void variables::printToFileVerbose(){
+void Variables::printToFileVerbose(){
 
 
 }
 
-void codeInMain::evaluate(char *){
+void Variables::evaulate(char *){
 
 }
 

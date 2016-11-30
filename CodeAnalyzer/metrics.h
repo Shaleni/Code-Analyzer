@@ -5,7 +5,7 @@
 
 using namespace std;
 //Abstract metrics class
-class Metrics {
+class Metric {
 private:
     int score;
 protected:

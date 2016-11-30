@@ -4,7 +4,7 @@
 
 //Class to determine the lines of code per file in the project
 //Inherits from abstract class Metrics
-class loc:public Metrics{
+class Loc:public Metric{
 private:
 
 protected:

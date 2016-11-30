@@ -4,13 +4,13 @@
 
 
     //Prints the short analysis to the file
-    void loc::printToFileShort(){
+    void Loc::printToFileShort(){
 
 
     }
 
     //Prints the verbose analysis to the file
-    void loc::printToFileVerbose(){
+    void Loc::printToFileVerbose(){
 
 
     }

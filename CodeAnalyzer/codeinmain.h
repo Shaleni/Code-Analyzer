@@ -10,7 +10,7 @@
     4 - 2-5%
     5 - 0-2% */
 
-class codeInMain:public Metrics{
+class CodeInMain:public Metric{
 private:
 
 protected:
@@ -18,7 +18,7 @@ protected:
 public:
     void printToFileShort();
     void printToFileVerbose();
-    int evaluate(char *);
+    void evaluate(char *);
 };
 
 

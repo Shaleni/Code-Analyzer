@@ -4,7 +4,7 @@
 
 //Class to determine the variable name quality in the project
 //Inherits from abstract class Metrics
-class variables:public Metrics{
+class Variables:public Metric{
 private:
 
 protected:
@@ -12,7 +12,7 @@ protected:
 public:
     void printToFileShort();
     void printToFileVerbose();
-    int evaulate(char *);
+    void evaulate(char *);
 
 };
 

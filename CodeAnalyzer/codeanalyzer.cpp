@@ -43,10 +43,11 @@ void CodeAnalyzer::readDirectory (const char * loc){
                 readDirectory (fullyQualifiedFilename.c_str());
             }
             else if (fileExtension=="h" || fileExtension=="hpp" || fileExtension=="c" || fileExtension=="cpp"){
-                std::cout << fullyQualifiedFilename <<std::endl;
+                //std::cout << fullyQualifiedFilename <<std::endl;
 
 
                 //Run metrics
+
 
 
             }

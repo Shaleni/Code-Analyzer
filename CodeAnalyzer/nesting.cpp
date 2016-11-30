@@ -5,18 +5,18 @@
 
 
 //Prints the short analysis to the file
-void nesting::printToFileShort(){
+void Nesting::printToFileShort(){
 
 
 }
 
 //Prints the verbose analysis to the file
-void nesting::printToFileVerbose(){
+void Nesting::printToFileVerbose(){
 
 
 }
 
-void codeInMain::evaluate(char *){
+void Nesting::evaluate(char *){
 
 }
 

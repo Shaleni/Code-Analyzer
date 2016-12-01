@@ -5,6 +5,12 @@
 class Comments:public Metric{
 private:
     int score;
+    int commentLines;
+    int codeLines;
+    double percentageComments;
+    double percentageCode;
+
+
 protected:
 
 public:

@@ -10,6 +10,7 @@ FileInfo::FileInfo(){
 FileInfo::FileInfo(const char * path){
     codeLines=0;
     commentLines=0;
+    fileScore = 0;
     filePath = path;
     determineName();
     determineExtension();

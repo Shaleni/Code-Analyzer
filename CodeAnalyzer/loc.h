@@ -14,8 +14,8 @@ private:
     Vector<FileInfo> cpp;
 
     void separateByExtension();
-    void determineOutliers();
-    void sortByLines();
+    void determineOutliers(Vector<FileInfo>&);
+    void sortByLines(Vector<FileInfo>&);
 protected:
 
 public:

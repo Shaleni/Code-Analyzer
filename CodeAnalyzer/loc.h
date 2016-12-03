@@ -15,7 +15,7 @@ private:
 
     void separateByExtension();
     void determineOutliers();
-    void sortByLines();
+    void sortByLines(Vector<FileInfo>&);
 protected:
 
 public:

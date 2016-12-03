@@ -65,12 +65,12 @@ void Loc::determineOutliers(Vector<FileInfo>& toFindOut){
     //int iqr = Q3-Q1;
 
     //find the inner fence for minor outliers
-    int innerUFence = Q3 + (IQR*1.5);
-    int innerLFence = Q1 - (IQR*1.5);
+    //int innerUFence = Q3 + (iqr*1.5);
+    //int innerLFence = Q1 - (iqr*1.5);
 
     //find the outer fence for major outliers
-    int outerUFence = Q3 + (IQR*3);
-    int outerLFence = Q1 - (IQR*3);
+    //int outerUFence = Q3 + (iqr*3);
+    //int outerLFence = Q1 - (iqr*3);
 
     /* Finding and scoring outliers
        Major outliers get score 5,

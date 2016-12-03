@@ -24,6 +24,9 @@ void Comments::printToFileVerbose(ofstream&){
 void Comments::evaluate(const char * filePath){
     FileInfo info (filePath);
 
-
+    codeLines = info.getCodeLines();
+    commentLines = info.getCommentLines();
+    percentageCode = codeLines/(codeLines+commentLines);
+    percentageComments = commentLines/(codeLines+commentLines);
 
 }

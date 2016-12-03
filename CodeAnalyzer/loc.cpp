@@ -58,6 +58,9 @@ void Loc::determineOutliers(Vector<FileInfo>& toFindOut){
         Q2 = toFindOut[(toFindOut.size()/2)].getCodeLines();
     }
 
+    //find the lower quartile (Q1)
+    int Q1;
+
 }
 
 //edit to sort by lines of code

@@ -98,7 +98,7 @@ void FileInfo::countCommentLines(){
                 count++;
 
             }
-            else if (current=='*' && previous = '/'){
+            else if (current=='*' && previous == '/'){
                 //count ++;
 
             }

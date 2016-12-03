@@ -26,7 +26,14 @@ void Comments::evaluate(const char * filePath){
 
     codeLines = info.getCodeLines();
     commentLines = info.getCommentLines();
-    percentageCode = codeLines/(codeLines+commentLines);
-    percentageComments = commentLines/(codeLines+commentLines);
+
+    if (codeLines+commentLines!=0){
+        percentageCode = codeLines/(codeLines+commentLines);
+        percentageComments = commentLines/(codeLines+commentLines);
+    }
+    else {
+        percentageCode = -1;
+        percentageComments = -1;
+    }
 
 }

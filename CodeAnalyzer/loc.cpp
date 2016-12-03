@@ -50,12 +50,12 @@ void Loc::separateByExtension(){
 
 void Loc::determineOutliers(Vector<FileInfo>& toFindOut){
     //find the median of the code
-    int median;
+    int Q2;
     //for an even-length vector, average the two in the middle
     if (toFindOut.size()%2 != 0){
-        median = ((toFindOut[(toFindOut.size()/2)+.5].getCodeLines()+toFindOut[(toFindOut.size()/2)-.5].getCodeLines())/2);
+        Q2 = ((toFindOut[(toFindOut.size()/2)+.5].getCodeLines()+toFindOut[(toFindOut.size()/2)-.5].getCodeLines())/2);
     } else {
-        median = toFindOut[(toFindOut.size()/2)].getCodeLines();
+        Q2 = toFindOut[(toFindOut.size()/2)].getCodeLines();
     }
 
 }
@@ -64,22 +64,22 @@ void Loc::determineOutliers(Vector<FileInfo>& toFindOut){
 void Loc::sortByLines(Vector<FileInfo>& toSort){
     /* advance the position through the entire array */
     /*   (could do j < n-1 because single element is also min element) */
-//    for (int j = 0; j < len-1; j++) {
-//        /* find the min element in the unsorted a[j .. n-1] */
+    for (int j = 0; j < toSort.size()-1; j++) {
+        /* find the min element in the unsorted a[j .. n-1] */
 
-//        /* assume the min is the first element */
-//        int iMin = j;
-//        /* test against elements after j to find the smallest */
-//        for (int i = j+1; i < len; i++) {
-//            /* if this element is less, then it is the new minimum */
-//            if (data[i] < data[iMin]) {
-//                /* found new minimum; remember its index */
-//                iMin = i;
-//            }
-//        }
+        /* assume the min is the first element */
+        int iMin = j;
+        /* test against elements after j to find the smallest */
+        for (int i = j+1; i < toSort.size(); i++) {
+            /* if this element is less, then it is the new minimum */
+            if (toSort[i].getCodeLines() < toSort[iMin].getCodeLines()) {
+                /* found new minimum; remember its index */
+                iMin = i;
+            }
+        }
 
-//        if(iMin != j) {
-//            swap(j,iMin);
-//        }
-//    }
+        if(iMin != j) {
+            toSort.swap(j,iMin);
+        }
+    }
 }

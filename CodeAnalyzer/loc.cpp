@@ -10,18 +10,17 @@ Loc::Loc(){
 //Prints the short analysis to the file
 void Loc::printToFileShort(ofstream& out){
     prepareData();
-    cout<<"Lines of Code per File"<<endl;
-    cout<<"Score: " << score <<endl;
+    //setMetricScore();
+    out<<"Lines of Code per File"<<endl;
+    out<<"Score: " << score <<endl;
 }
 
 //Prints the verbose analysis to the file
 void Loc::printToFileVerbose(ofstream& out){
     prepareData();
-    cout<<"Lines of Code per File"<<endl;
-    cout<<"Score: " << score <<endl;
     //setMetricScore();
-    out<<"Metric: Lines of Code."<<endl;
-    out<<"Score: "<<endl;
+    out<<"Lines of Code per File"<<endl;
+    out<<"Score: " << score <<endl;
 }
 
 void Loc::evaluate(const char * filePath){
@@ -183,6 +182,25 @@ void Loc::insertSorted(FileInfo toSort){
 void Loc::prepareData(){
     //fill the vectors by extension
     separateByExtension();
+
+    //print data to console
+    //h
+    for (int i=0; i<h.size(); i++){
+        cout<<h[i].getCodeLines()<<" 0"<<endl;
+    }
+    //cpp
+    for (int i=0; i<cpp.size(); i++){
+        cout<<cpp[i].getCodeLines()<<" 1"<<endl;
+    }
+    //c
+    for (int i=0; i<c.size(); i++){
+        cout<<c[i].getCodeLines()<<" 2"<<endl;
+    }
+    //hpp
+    for (int i=0; i<hpp.size(); i++){
+        cout<<hpp[i].getCodeLines()<<" 3"<<endl;
+    }
+
 
     //find outliers and score files
     determineOutliers(h);

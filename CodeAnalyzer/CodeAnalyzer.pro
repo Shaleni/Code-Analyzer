@@ -12,16 +12,16 @@ HEADERS += \
     metrics.h \
     loc.h \
     nesting.h \
-    variables.h \
-    fileinfo.h
+    fileinfo.h \
+    classname.h
 
 SOURCES += main.cpp \
     codeinmain.cpp \
     dsstring.cpp \
     comments.cpp \
-    variables.cpp \
     nesting.cpp \
     loc.cpp \
     codeanalyzer.cpp \
-    fileinfo.cpp
+    fileinfo.cpp \
+    classname.cpp
 

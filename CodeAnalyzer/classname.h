@@ -1,23 +1,25 @@
-#ifndef VARIABLES
-#define VARIABLES
+#ifndef CLASSNAME
+#define CLASSNAME
 #include "metrics.h"
 
 //Class to determine the variable name quality in the project
 //Inherits from abstract class Metrics
-class Variables:public Metric{
+class ClassName:public Metric{
 private:
     int score;
+    int scoreTracker[6];
     Vector<String> classNames;
     void generateScore();
+
+    int evaluateClassName(String);
 protected:
 
 public:
-    Variables();
+    ClassName();
     void printToFileShort(ofstream&);
     void printToFileVerbose(ofstream&);
     void evaluate(const char *);
-
 };
 
-#endif // VARIABLES
+#endif // CLASSNAME
 

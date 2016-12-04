@@ -10,14 +10,14 @@ Loc::Loc(){
 //Prints the short analysis to the file
 void Loc::printToFileShort(ofstream&){
     prepareData();
-    setMetricScore();
+    //setMetricScore();
 
 }
 
 //Prints the verbose analysis to the file
 void Loc::printToFileVerbose(ofstream&){
     prepareData();
-    setMetricScore();
+    //setMetricScore();
     cout<<"Metric: Lines of Code."<<endl;
     cout<<"Score: "<<endl;
 }
@@ -133,7 +133,7 @@ void Loc::setScore(Vector<FileInfo> & toFindOut, int index){
 
     //find the mean
     for (int i=0; i<toFindOut.size(); i++){
-            mean+=toFindOut[i].getCodeLines();
+        mean+=toFindOut[i].getCodeLines();
     }
     mean = mean/toFindOut.size();
 
@@ -181,7 +181,7 @@ void Loc::prepareData(){
     //fill the vectors by extension
     separateByExtension();
 
-    //find and score outliers (and other files)
+    //find outliers and score files
     determineOutliers(h);
     determineOutliers(cpp);
     determineOutliers(c);

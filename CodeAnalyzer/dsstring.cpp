@@ -227,7 +227,7 @@ String String::operator+ (const char* rhs) const{
 
     String retstr (newchars);
 
-    delete newchars;
+    delete [] newchars;
     return retstr;
 }
 

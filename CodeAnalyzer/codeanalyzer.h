@@ -8,10 +8,11 @@
 class CodeAnalyzer {
 public:
     CodeAnalyzer();
-    void runMetrics (const char *, const char *, bool verbose);
+    void runMetrics (const char *);
+    void writeOutput (const char *, bool);
 
 private:
-    void writeOutput (const char *, bool);
+
     void readDirectory (const char *);
     int isDir(const char*);
 

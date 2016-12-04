@@ -21,9 +21,9 @@ CodeAnalyzer::CodeAnalyzer (){
     metrics[4] = new Nesting;
 }
 
-void CodeAnalyzer::runMetrics(const char * root, const char * output, bool verbose) {
+void CodeAnalyzer::runMetrics(const char * root) {
     readDirectory (root);
-    writeOutput (output, verbose);
+    //writeOutput (output, verbose);
 
 
 

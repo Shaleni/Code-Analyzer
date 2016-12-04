@@ -11,14 +11,14 @@ Variables::Variables(){
 //Prints the short analysis to the file
 void Variables::printToFileShort(ofstream& out){
     out << "Printing variables short" <<endl;
-    generateScore();
+    //generateScore();
 
 }
 
 //Prints the verbose analysis to the file
 void Variables::printToFileVerbose(ofstream& out){
     out << "Printing variables verbose" <<endl;
-    generateScore();
+    //generateScore();
 
 }
 
@@ -62,6 +62,7 @@ void Variables::evaluate(const char * filePath){
 
 }
 
+
 /* Go through each class name and score it. Count the number
  * of each score type in an int array, with the index being the
  * score */
@@ -82,5 +83,6 @@ void Variables::generateScore(){
 int Variables::evaluateClassName(String cname){
 
 }
+
 
 // See txt file for standards on variable name quality

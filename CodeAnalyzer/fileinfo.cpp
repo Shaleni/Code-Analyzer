@@ -116,4 +116,10 @@ void FileInfo::countCommentLines(){
     //cout << commentLines <<endl;
 }
 
+void FileInfo::setFileScore(int setScore){
+    fileScore = setScore;
+}
 
+int FileInfo::getFileScore(){
+    return fileScore;
+}

@@ -2,6 +2,7 @@
 #define LOC
 #include "metrics.h"
 #include "fileinfo.h"
+#include "cmath"
 
 //Class to determine the lines of code per file in the project
 //Inherits from abstract class Metrics
@@ -11,12 +12,16 @@ private:
     int lines;
     Vector<FileInfo> files;
     Vector<FileInfo> h;
+    Vector<FileInfo> c;
+    Vector<FileInfo> hpp;
     Vector<FileInfo> cpp;
 
     void separateByExtension();
     void determineOutliers(Vector<FileInfo>&);
+    void setScore(Vector<FileInfo>&, int);
     void insertSorted(FileInfo);
     void prepareData();
+    void setMetricScore();
 protected:
 
 public:

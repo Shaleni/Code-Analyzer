@@ -28,12 +28,14 @@ public:
     FileInfo();
     FileInfo (const char *);
     void setPath(const char *);
+    void setFileScore(int);
     String getPath();
     String getExtension();
     String getName();
 
     int getCodeLines();
     int getCommentLines();
+    int getFileScore();
 };
 
 #endif // FILEINFO

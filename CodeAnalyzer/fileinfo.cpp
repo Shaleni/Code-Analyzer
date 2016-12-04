@@ -99,6 +99,7 @@ void FileInfo::countCommentLines(){
                 previous = current;
                 //cout << "Counted Double slash: " << count << endl;
             }
+
             else if (previous == '/' && current=='*'){
                 previous = current;
                 //cout << "Open block quote: " << count <<endl;

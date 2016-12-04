@@ -15,21 +15,22 @@ using namespace std;
 
 class CodeInMain:public Metric{
 private:
+    //Private member variables
     int linesInMain;
     int totalLines;
     double percent;
     int score;
 
-protected:
-
 public:
     CodeInMain();
+    //Implementation of virtual functions
     void printToFileShort(ofstream&);
     void printToFileVerbose(ofstream&);
     void evaluate(const char *);
+
+    //Additiona private functions
     void calculatePercent();
     void determineScore();
-
 };
 
 #endif // CODEINMAIN

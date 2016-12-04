@@ -46,7 +46,6 @@ void Comments::evaluate(const char * filePath){
 
 void Comments::prepareOutput() {
     totalLines = codeLines+commentLines;
-    cout << totalLines << endl;
     if (totalLines!=0){
         percentageCode = double (codeLines)/totalLines;
         percentageComments = double (commentLines)/totalLines;

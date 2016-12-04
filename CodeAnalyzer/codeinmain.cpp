@@ -16,7 +16,7 @@ CodeInMain::CodeInMain(){
 //calculates the percent of code in main
 void CodeInMain::calculatePercent(){
     if (totalLines!=0){
-        percent=(linesInMain/totalLines)*100;
+        percent=((double)linesInMain/totalLines)*100;
     }
     else percent = -1;
 }

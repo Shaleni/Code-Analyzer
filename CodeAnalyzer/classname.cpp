@@ -18,6 +18,7 @@ void ClassName::printToFileShort(ofstream& out){
     generateScore();
     out <<"Class Name Quality" <<endl;
     out<<"Score: "<<score<<endl;
+    out<<endl;
 }
 
 //Prints the verbose analysis to the file
@@ -32,6 +33,7 @@ void ClassName::printToFileVerbose(ofstream& out){
     out<<"Number of class names that scored a 3: "<<scoreTracker[3]<<endl;
     out<<"Number of class names that scored a 4: "<<scoreTracker[4]<<endl;
     out<<"Number of class names that scored a 5: "<<scoreTracker[5]<<endl;
+    out<<endl;
 }
 
 void ClassName::evaluate(const char * filePath){

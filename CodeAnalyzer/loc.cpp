@@ -10,12 +10,15 @@ Loc::Loc(){
 //Prints the short analysis to the file
 void Loc::printToFileShort(ofstream& out){
     prepareData();
-    //setMetricScore();
+    cout<<"Lines of Code per File"<<endl;
+    cout<<"Score: " << score <<endl;
 }
 
 //Prints the verbose analysis to the file
 void Loc::printToFileVerbose(ofstream& out){
     prepareData();
+    cout<<"Lines of Code per File"<<endl;
+    cout<<"Score: " << score <<endl;
     //setMetricScore();
     out<<"Metric: Lines of Code."<<endl;
     out<<"Score: "<<endl;

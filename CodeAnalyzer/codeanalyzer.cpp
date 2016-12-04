@@ -9,7 +9,7 @@
 #include "codeinmain.h"
 #include "loc.h"
 #include "nesting.h"
-#include "variables.h"
+#include "classname.h"
 #include "comments.h"
 
 CodeAnalyzer::CodeAnalyzer (){
@@ -17,7 +17,7 @@ CodeAnalyzer::CodeAnalyzer (){
     metrics[0] = new CodeInMain;
     metrics[1] = new Loc;
     metrics[2] = new Comments;
-    metrics[3] = new Variables;
+    metrics[3] = new ClassName;
     metrics[4] = new Nesting;
 }
 

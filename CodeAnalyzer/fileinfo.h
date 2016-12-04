@@ -13,6 +13,7 @@ using namespace std;
 
 class FileInfo{
 private:
+    //Member variables
     int fileScore;
     int lnFileScore;
     int codeLines;
@@ -21,20 +22,23 @@ private:
     String filePath;
     String fileExtension;
 
+    //Private member functions
     void countCodeLines();
     void countCommentLines();
     void determineName();
     void determineExtension();
 
 public:
+    //Constructors
     FileInfo();
     FileInfo (const char *);
+
+    //Getters and setters
     void setPath(const char *);
     void setFileScore(int);
     String getPath();
     String getExtension();
     String getName();
-
     int getCodeLines();
     int getCommentLines();
     int getFileScore();

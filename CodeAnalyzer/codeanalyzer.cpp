@@ -1,10 +1,14 @@
-#include "codeanalyzer.h"
-#include "dsstring.h"
+//Libraries
 #include <dirent.h>
 #include <sys/stat.h>
-#include "vector.h"
 #include <fstream>
 
+//My header files
+#include "codeanalyzer.h"
+#include "dsstring.h"
+#include "vector.h"
+
+//Include Metrics class and subclasses for each metric
 #include "metrics.h"
 #include "codeinmain.h"
 #include "loc.h"
@@ -23,17 +27,15 @@ CodeAnalyzer::CodeAnalyzer (){
 
 void CodeAnalyzer::runMetrics(const char * root) {
     readDirectory (root);
-    //writeOutput (output, verbose);
-
-
-
 }
 
 void CodeAnalyzer::writeOutput(const char * file, bool verbose){
     ofstream out;
     out.open(file);
     if (out.is_open()){
+        //Loop over the array of metrics, printing the output each time
         for (int i=0; i<NUM_METRICS;i++){
+            //Check if verbose flag has been set
             if (verbose) metrics[i]->printToFileVerbose(out);
             else metrics[i]->printToFileShort(out);
         }
@@ -42,9 +44,9 @@ void CodeAnalyzer::writeOutput(const char * file, bool verbose){
 }
 
 int CodeAnalyzer::isDir(const char *path) {
+    //Detect if an address is a directory
     struct stat statbuf;
-    if (stat(path, &statbuf) != 0)
-        return 0;
+    if (stat(path, &statbuf) != 0) return 0;
     return S_ISDIR(statbuf.st_mode);
 }
 
@@ -53,38 +55,34 @@ void CodeAnalyzer::readDirectory (const char * loc){
     struct dirent *ent;
     if ((dir = opendir (loc)) != NULL) {
         while ((ent = readdir (dir)) != NULL) {
+
             //Create fully qualified filename
             String fullyQualifiedFilename (loc);
             fullyQualifiedFilename = fullyQualifiedFilename + "/" + String(ent->d_name);
 
             //Split into substrings based on '.' character, then examine final substring
             //Determines if file has a permitted ending: .h .hpp .c .cpp
+
             Vector<String> splits = String(ent->d_name).split('.');
             String fileExtension = splits[1];
 
             if (strcmp(ent->d_name,".")==0 || strcmp(ent->d_name,"..")==0){
                 //Don't do anything with directories named "." or ".." to avoid infinite loops
-                //std::cout << "Has a period." << std::endl;
             }
             else if (isDir(fullyQualifiedFilename.c_str())){
                 //If path represents a directory, recursively examine that directory
                 readDirectory (fullyQualifiedFilename.c_str());
             }
             else if (fileExtension=="h" || fileExtension=="hpp" || fileExtension=="c" || fileExtension=="cpp"){
-                //std::cout << fullyQualifiedFilename <<std::endl;
-
-
+                //If file is one of the four recognized filetypes
+                //Loop through the array of metrics, calling evaluate() for each one
                 for (int i=0; i<NUM_METRICS; i++){
                     metrics[i]->evaluate(fullyQualifiedFilename.c_str());
                 }
-
             }
-            else{
-                //Is a non-code file. Do nothing.
-            }
+            else{} //Is a non-code file. Do nothing.
         }
         closedir (dir);
-    } else {
-        std::cout << "Failed to open directory." <<std::endl;
-    }
+    } else std::cout << "Failed to open directory." <<std::endl;
+
 }

@@ -85,27 +85,42 @@ void FileInfo::countCodeLines(){
 
 void FileInfo::countCommentLines(){
     int count=0;
-    char current;
-    char previous;
+    char current, previous;
     fstream fin;
+
     fin.open(filePath.c_str());
 
-    //count the number of lines in a file. a line is counted for every ; and {
     if (fin.is_open()){
         //read file character by character.
-        while (fin>>current){
+        while (!fin.eof()){
+            current = fin.get();
             if (current=='/' && previous=='/'){
                 count++;
-
+                previous = current;
+                //cout << "Counted Double slash: " << count << endl;
             }
-            else if (current=='*' && previous == '/'){
-                //count ++;
+            else if (previous == '/' && current=='*'){
+                previous = current;
+                //cout << "Open block quote: " << count <<endl;
 
+                while (!fin.eof()){
+                    current = fin.get();
+                    if (current == '\n'){
+                        count++;
+                        //cout << "Counted inner block quote: " << count <<endl;
+                    }
+                    else if (previous == '*' && current == '/') {
+                        count++;
+                        //cout << "End of block: " << count <<endl;
+                        break;
+                    }
+                    else{} //Continue Loop
+                    previous = current;
+                }
             }
             else{
-
+                previous = current;
             }
-            previous = current;
         }
         fin.close();
     } else {
@@ -113,7 +128,7 @@ void FileInfo::countCommentLines(){
     }
 
     commentLines=count;
-    //cout << commentLines <<endl;
+    //cout << filePath << ": " <<commentLines << endl;
 }
 
 

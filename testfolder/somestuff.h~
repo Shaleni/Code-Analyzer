@@ -6,7 +6,7 @@
 Multi line comment
 */
 
-void notAComment (int i); //End of line comment
+void notAComment (int i);
 
 /************************
 Lots of stars in comment

@@ -15,7 +15,10 @@ CodeInMain::CodeInMain(){
 }
 //calculates the percent of code in main
 void CodeInMain::calculatePercent(){
+    if (totalLines!=0){
     percent=(linesInMain/totalLines)*100;
+    }
+    else percent = -1;
 }
 
 //determines the score of the file based on the following scale:

@@ -6,34 +6,65 @@
 
 //construtor
 Comments::Comments(){
-
+    percentageCode = 0;
+    percentageComments = 0;
+    codeLines=0;
+    commentLines=0;
 }
 
 //Prints the short analysis to the file
-void Comments::printToFileShort(ofstream&){
+void Comments::printToFileShort(ofstream& out){
+    prepareOutput();
 
+    out << "Comments score: " << score <<endl <<endl;
 
 }
 
 //Prints the verbose analysis to the file
-void Comments::printToFileVerbose(ofstream&){
+void Comments::printToFileVerbose(ofstream& out){
+    prepareOutput();
+    out << "Comments score: " << score <<endl;
+    //out << "Lines of code: " << codeLines <<endl;
+    //out << "Lines of comments: " << commentLines <<endl;
 
+    out << "Percentage code: " << (percentageCode*100)<<"%" <<endl;
+    out << "Percentage comments: " << (percentageComments*100) <<"%" <<endl <<endl;
 
 }
 
 void Comments::evaluate(const char * filePath){
     FileInfo info (filePath);
 
-    codeLines = info.getCodeLines();
-    commentLines = info.getCommentLines();
+    codeLines += info.getCodeLines();
+    commentLines += info.getCommentLines();
 
-    if (codeLines+commentLines!=0){
-        percentageCode = codeLines/(codeLines+commentLines);
-        percentageComments = commentLines/(codeLines+commentLines);
+
+
+}
+
+void Comments::prepareOutput() {
+    totalLines = codeLines+commentLines;
+    cout << totalLines << endl;
+    if (totalLines!=0){
+        percentageCode = double (codeLines)/totalLines;
+        percentageComments = double (commentLines)/totalLines;
     }
     else {
         percentageCode = -1;
         percentageComments = -1;
     }
+
+    //Scoring table
+    if (percentageComments>.6)          score=5;
+    else if (percentageComments>.5)     score=2;
+    else if (percentageComments>.4)     score=1;
+    else if (percentageComments<.05)    score=5;
+    else if (percentageComments<.1)     score=4;
+    else if (percentageComments<.15)    score=3;
+    else if (percentageComments<.2)     score=2;
+    else if (percentageComments<.25)    score=1;
+    else                                score=0;
+
+
 
 }

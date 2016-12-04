@@ -11,7 +11,6 @@ Loc::Loc(){
 void Loc::printToFileShort(ofstream&){
     prepareData();
     //setMetricScore();
-
 }
 
 //Prints the verbose analysis to the file

@@ -4,6 +4,7 @@
 
 class Comments:public Metric{
 private:
+    //Member variables
     int score;
     int commentLines;
     int codeLines;
@@ -11,16 +12,17 @@ private:
     double percentageComments;
     double percentageCode;
 
+    //Private member functions
     void prepareOutput();
 
-protected:
-
 public:
+    //Constructor
     Comments();
+
+    //Public member functions
     void printToFileShort(ofstream&);
     void printToFileVerbose(ofstream&);
     void evaluate (const char *);
-
 };
 
 

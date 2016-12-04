@@ -62,5 +62,30 @@ void Variables::evaluate(const char * filePath){
 
 }
 
+<<<<<<< HEAD
+=======
+
+/* Go through each class name and score it. Count the number
+ * of each score type in an int array, with the index being the
+ * score */
+//consider using a somewhat trivial hashtable instead of an array
+void Variables::generateScore(){
+     int scoreTracker[5];
+     int nameScore = 0;
+
+     //loop through vector of class names
+     for (int i=0; i<classNames.size(); i++){
+         nameScore = evaluateClassName(classNames[i]);
+
+         //case statement to assign score to int array
+     }
+}
+
+//evaluate a class name
+int Variables::evaluateClassName(String cname){
+
+}
+
+>>>>>>> 266f0242a05616aa8d92665506f67fc176d9ef83
 
 // See txt file for standards on variable name quality

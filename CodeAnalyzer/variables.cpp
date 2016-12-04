@@ -22,21 +22,42 @@ void Variables::printToFileVerbose(ofstream& out){
 
 void Variables::evaluate(const char * filePath){
     //variable to hold a line of code
-    char codeBlock[256];
+    char codeBlock[100];
+    char className[100];
 
     fstream fin;
     fin.open(filePath);
 
     if (fin.is_open()){
-       // while () {
-            fin.getline(codeBlock, 256, '{');
+        while (!fin.eof()){
+            fin>>codeBlock;
             String cB(codeBlock);
-            cout<<"codeBlock: "<<cB<<endl;
-       // }
+            if (cB == "class"){
+                fin>>className;
+                String cName(className);
+                //remove trailing semicolons
+                if (cName[cName.size()-1]==';'){
+                    cName = cName.substring(0, cName.size()-1);
+                }
+                //remove anything after (and including) a colon
+                int i=0;
+                while (cName[i] != ':' && i<cName.size()){
+                    i++;
+                }
+                if (cName[i] == ':'){
+                    cName = cName.substring(0, i);
+                }
+
+                //add class name to the vector of classNames
+                classNames.add(cName);
+            }
+        }
+
+        fin.close();
     } else {
         cout<<"Error. File failed to open"<<endl;
     }
-    fin.close();
+
 }
 
 

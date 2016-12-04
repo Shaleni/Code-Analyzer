@@ -139,3 +139,7 @@ void FileInfo::setFileScore(int setScore){
 int FileInfo::getFileScore(){
     return fileScore;
 }
+
+int FileInfo::getLnCodeLines(){
+    return log(codeLines);
+}

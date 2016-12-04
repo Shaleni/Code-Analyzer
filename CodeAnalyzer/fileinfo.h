@@ -4,6 +4,7 @@
 #include "vector.h"
 #include "dsstring.h"
 #include <fstream>
+#include <cmath>
 
 using namespace std;
 
@@ -13,6 +14,7 @@ using namespace std;
 class FileInfo{
 private:
     int fileScore;
+    int lnFileScore;
     int codeLines;
     int commentLines;
     String fileName;
@@ -36,6 +38,7 @@ public:
     int getCodeLines();
     int getCommentLines();
     int getFileScore();
+    int getLnCodeLines();
 };
 
 #endif // FILEINFO

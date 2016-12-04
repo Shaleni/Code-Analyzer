@@ -29,7 +29,6 @@ void Variables::evaluate(const char * filePath){
     fin.open(filePath);
 
     if (fin.is_open()){
-        cout<<filePath<<endl;
         while (!fin.eof()){
             fin>>codeBlock;
             String cB(codeBlock);

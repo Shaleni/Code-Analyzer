@@ -8,6 +8,7 @@ class Variables:public Metric{
 private:
     int score;
     Vector<String> classNames;
+    void prepareData();
 protected:
 
 public:

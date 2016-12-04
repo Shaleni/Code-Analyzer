@@ -11,12 +11,14 @@ Variables::Variables(){
 //Prints the short analysis to the file
 void Variables::printToFileShort(ofstream& out){
     out << "Printing variables short" <<endl;
+    generateScore();
 
 }
 
 //Prints the verbose analysis to the file
 void Variables::printToFileVerbose(ofstream& out){
     out << "Printing variables verbose" <<endl;
+    generateScore();
 
 }
 
@@ -60,5 +62,8 @@ void Variables::evaluate(const char * filePath){
 
 }
 
+void Variables::generateScore(){
+
+}
 
 // See txt file for standards on variable name quality

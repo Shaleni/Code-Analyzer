@@ -7,6 +7,7 @@
 class Variables:public Metric{
 private:
     int score;
+    Vector<String> classNames;
 protected:
 
 public:

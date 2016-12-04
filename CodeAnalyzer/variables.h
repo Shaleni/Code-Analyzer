@@ -9,6 +9,8 @@ private:
     int score;
     Vector<String> classNames;
     void generateScore();
+
+    int evaluateClassName(String);
 protected:
 
 public:

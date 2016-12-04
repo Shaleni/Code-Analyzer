@@ -30,19 +30,14 @@ void CodeInMain::calculatePercent(){
     1 - [2-5)%
     0 - [0-2)% */
 void CodeInMain::determineScore(){
-    if (percent>=75){
-        score=5;
-    } else if (percent >= 50){
-        score=4;
-    } else if (percent >= 20){
-        score=3;
-    } else if (percent >= 5){
-        score=2;
-    } else if (percent>=2){
-        score=1;
-    } else {
-        score=0;
-    }
+    //Scoring table
+    if (percent>=75)        score=5;
+    else if (percent >= 50) score=4;
+    else if (percent >= 20) score=3;
+    else if (percent >= 5)  score=2;
+    else if (percent>=2)    score=1;
+    else                    score=0;
+
 }
 
 //Prints the short analysis to the file

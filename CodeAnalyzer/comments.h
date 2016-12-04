@@ -7,9 +7,11 @@ private:
     int score;
     int commentLines;
     int codeLines;
+    int totalLines;
     double percentageComments;
     double percentageCode;
 
+    void prepareOutput();
 
 protected:
 

@@ -132,7 +132,7 @@ void Loc::setScore(Vector<FileInfo> & toFindOut, int index){
 
     //find the mean
     for (int i=0; i<toFindOut.size(); i++){
-            mean+=toFindOut[i].getCodeLines();
+        mean+=toFindOut[i].getCodeLines();
     }
     mean = mean/toFindOut.size();
 
@@ -180,7 +180,7 @@ void Loc::prepareData(){
     //fill the vectors by extension
     separateByExtension();
 
-    //find and score outliers (and other files)
+    //find outliers and score files
     determineOutliers(h);
     determineOutliers(cpp);
     determineOutliers(c);

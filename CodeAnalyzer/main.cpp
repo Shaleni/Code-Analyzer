@@ -20,7 +20,8 @@ int main( int argc, char* const argv[] )
 
         //Create CodeAnalyzer object and run metrics
         CodeAnalyzer myAnalyzer;
-        myAnalyzer.runMetrics(argv[2], argv[3], verbose);
+        myAnalyzer.runMetrics(argv[2]);
+        myAnalyzer.writeOutput(argv[3], verbose);
     }
     else {
         cout << "Incorrect number of arguments. Please enter a single fully-qualified path name." <<endl;

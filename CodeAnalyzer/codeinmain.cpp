@@ -16,7 +16,7 @@ CodeInMain::CodeInMain(){
 //calculates the percent of code in main
 void CodeInMain::calculatePercent(){
     if (totalLines!=0){
-    percent=(linesInMain/totalLines)*100;
+        percent=(linesInMain/totalLines)*100;
     }
     else percent = -1;
 }
@@ -42,16 +42,17 @@ void CodeInMain::determineScore(){
 
 //Prints the short analysis to the file
 void CodeInMain::printToFileShort(ofstream& out){
-    out<<"Score for percent of code in main: "<<score<<endl;
+    out<< "Percent of Code in Main"<< endl;
+    out<< "Score: "<<score<<endl<<endl;
 }
 
 //Prints the verbose analysis to the file
 void CodeInMain::printToFileVerbose(ofstream& out){
-    out<<"Metric: Percent of Code in Main"<<endl;
-    out<<"Number of lines of code in main: "<<linesInMain<<endl;
-    out<<"Total lines of code in the project: "<<totalLines<<endl;
-    out<<"Percent of code in main: "<<percent<<"%"<<endl;
+    out<<"Percent of Code in Main"<<endl;
     out<<"Score: "<<score<<endl;
+    out<<"Number of lines of code in main: "<<linesInMain<<endl;
+    out<<"Total lines of code in project: "<<totalLines<<endl;
+    out<<"Percent of code in main: "<<percent<<"%"<<endl;
     out<<endl;
 }
 

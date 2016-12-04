@@ -15,17 +15,19 @@ Comments::Comments(){
 //Prints the short analysis to the file
 void Comments::printToFileShort(ofstream& out){
     prepareOutput();
-
-    out << "Comments score: " << score <<endl <<endl;
+    out << "Comment Quality" <<endl;
+    out << "Score: " << score <<endl <<endl;
 
 }
 
 //Prints the verbose analysis to the file
 void Comments::printToFileVerbose(ofstream& out){
     prepareOutput();
-    out << "Comments score: " << score <<endl;
-    //out << "Lines of code: " << codeLines <<endl;
-    //out << "Lines of comments: " << commentLines <<endl;
+    out << "Comment Quality" <<endl;
+    out << "Score: " << score <<endl;
+
+    out << "Lines of code: " << codeLines <<endl;
+    out << "Lines of comments: " << commentLines <<endl;
 
     out << "Percentage code: " << (percentageCode*100)<<"%" <<endl;
     out << "Percentage comments: " << (percentageComments*100) <<"%" <<endl <<endl;

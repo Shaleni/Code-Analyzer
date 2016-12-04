@@ -44,6 +44,7 @@ void Loc::separateByExtension(){
     }
 }
 
+//use ln(codeLines)
 void Loc::determineOutliers(Vector<FileInfo>& toFindOut){
     //find the median of the code
     int medIndex=0;
@@ -51,10 +52,10 @@ void Loc::determineOutliers(Vector<FileInfo>& toFindOut){
     //for an even-length vector, average the two in the middle
     if (toFindOut.size()%2 == 0){
         medIndex = toFindOut.size()/2;
-        Q2 = (toFindOut[medIndex].getCodeLines() + toFindOut[medIndex-1].getCodeLines())/2;
+        Q2 = (toFindOut[medIndex].getLnCodeLines() + toFindOut[medIndex-1].getLnCodeLines())/2;
     } else {
         medIndex = (toFindOut.size()-1)/2;
-        Q2 = toFindOut[medIndex].getCodeLines();
+        Q2 = toFindOut[medIndex].getLnCodeLines();
     }
 
     //find the lower quartile (Q1)
@@ -63,10 +64,10 @@ void Loc::determineOutliers(Vector<FileInfo>& toFindOut){
     //even median index
     if (medIndex%2 == 0){
         Q1index = medIndex/2;
-        Q1 = (toFindOut[Q1index].getCodeLines() + toFindOut[Q1index-1].getCodeLines())/2;
+        Q1 = (toFindOut[Q1index].getLnCodeLines() + toFindOut[Q1index-1].getLnCodeLines())/2;
     } else {
         Q1index = (medIndex-1)/2;
-        Q1 = toFindOut[Q1index].getCodeLines();
+        Q1 = toFindOut[Q1index].getLnCodeLines();
     }
 
     //find the upper quartile (Q3)
@@ -75,10 +76,10 @@ void Loc::determineOutliers(Vector<FileInfo>& toFindOut){
     //even median index
     if (medIndex%2 == 0){
         Q3index = medIndex + (medIndex/2);
-        Q3 = (toFindOut[Q3index].getCodeLines() + toFindOut[Q3index-1].getCodeLines())/2;
+        Q3 = (toFindOut[Q3index].getLnCodeLines() + toFindOut[Q3index-1].getLnCodeLines())/2;
     } else {
         Q3index = medIndex + ((medIndex-1)/2);
-        Q3 = toFindOut[Q3index].getCodeLines();
+        Q3 = toFindOut[Q3index].getLnCodeLines();
     }
 
 
@@ -100,16 +101,16 @@ void Loc::determineOutliers(Vector<FileInfo>& toFindOut){
     //loop through and determine outliers:
     for (int i=0; i<toFindOut.size(); i++){
         //check from low range to high range
-        if (toFindOut[i].getCodeLines() <= outerLFence){
+        if (toFindOut[i].getLnCodeLines() <= outerLFence){
             //major outlier
             toFindOut[i].setFileScore(5);
-        } else if (toFindOut[i].getCodeLines() <= innerLFence){
+        } else if (toFindOut[i].getLnCodeLines() <= innerLFence){
             //minor outlier
             toFindOut[i].setFileScore(4);
-        } else if (toFindOut[i].getCodeLines() >= outerUFence){
+        } else if (toFindOut[i].getLnCodeLines() >= outerUFence){
             //major outlier
             toFindOut[i].setFileScore(5);
-        } else if (toFindOut[i].getCodeLines() >= innerUFence){
+        } else if (toFindOut[i].getLnCodeLines() >= innerUFence){
             //minor outlier
             toFindOut[i].setFileScore(4);
         } else {
@@ -132,14 +133,14 @@ void Loc::setScore(Vector<FileInfo> & toFindOut, int index){
 
     //find the mean
     for (int i=0; i<toFindOut.size(); i++){
-        mean+=toFindOut[i].getCodeLines();
+        mean+=toFindOut[i].getLnCodeLines();
     }
     mean = mean/toFindOut.size();
 
     //find the variance
     int sumOfSquares=0;
     for(int j=0; j<toFindOut.size(); j++){
-        sumOfSquares += (toFindOut[j].getCodeLines()-mean)*(toFindOut[j].getCodeLines()-mean);
+        sumOfSquares += (toFindOut[j].getLnCodeLines()-mean)*(toFindOut[j].getLnCodeLines()-mean);
     }
     variance = sumOfSquares/(toFindOut.size()-1);
 
@@ -147,7 +148,7 @@ void Loc::setScore(Vector<FileInfo> & toFindOut, int index){
     stdDev = sqrt(variance);
 
     //assign scores
-    double difference = abs(toFindOut[index].getCodeLines()-mean);
+    double difference = abs(toFindOut[index].getLnCodeLines()-mean);
 
     //compare to std deviations away starting high
     if (difference >= (stdDev*3)){

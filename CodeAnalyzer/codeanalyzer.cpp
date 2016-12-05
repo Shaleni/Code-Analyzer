@@ -24,7 +24,7 @@ CodeAnalyzer::CodeAnalyzer (){
     metrics[2] = new Comments;
     metrics[3] = new ClassName;
     metrics[4] = new Nesting;
-    metrics[5] = new FunctionName;
+    //metrics[5] = new FunctionName;
 }
 
 void CodeAnalyzer::runMetrics(const char * root) {
@@ -92,17 +92,17 @@ void CodeAnalyzer::readDirectory (const char * loc){
         }
         closedir (dir);
     } else std::cout << "Failed to open directory." <<std::endl;
-
 }
 
 void CodeAnalyzer::computeOverallScore(){
-    int sumScore=0;
+    //Overall score is the average score of all metrics
 
-     for (int i=0; i<NUM_METRICS;i++) {
+    //Loop over the metrics to find the sum of all scores, then divide by NUM_METRICS
+    int sumScore=0;
+    for (int i=0; i<NUM_METRICS;i++) {
         sumScore+=metrics[i]->getScore();
-     }
-     overallScore=sumScore/NUM_METRICS;
-     cout << overallScore <<endl;
+    }
+    overallScore=sumScore/NUM_METRICS;
 }
 
 CodeAnalyzer::~CodeAnalyzer(){

@@ -1,7 +1,5 @@
-
 LIBS += \
-       -lboost_system\
-
+    -lboost_system\
 
 TEMPLATE = app
 CONFIG += console c++11

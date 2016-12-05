@@ -29,22 +29,17 @@ void Loc::printToFileVerbose(ofstream& out){
     out<<"Score: " << score <<endl;
     out<<".h files: "<<endl;
     if (h.size()>=2){
-
-        out<<"T-statistic: "<<th<<endl;
-        out<<"Degrees of freedom: "<<dh<<endl;
-        out<<"p-value: "<< setprecision(3) << scientific<< ph<<endl;
+        out<<"p-value: "<< setprecision(3) << scientific << ph<<endl;
         if (ph>0.05){
             out<<"Failed to reject null hypothesis, .h files well designed"<<endl;
         } else {
             out<<"Rejected null hypothesis, .h files poorly designed"<<endl;
         }
     } else {
-        out<<"Too few files to do a t-test"<<endl;
+        out<<"Too few files to do a t-test; need 2 or more of this type"<<endl;
     }
     out<<".cpp files: "<<endl;
     if (cpp.size()>=2){
-        out<<"T-statistic: "<<tcpp<<endl;
-        out<<"Degrees of freedom: "<<dcpp<<endl;
         out<<"p-value: "<<pcpp<<endl;
         if (pcpp>0.05){
             out<<"Failed to reject null hypothesis, .cpp files well designed"<<endl;
@@ -52,12 +47,10 @@ void Loc::printToFileVerbose(ofstream& out){
             out<<"Rejected null hypothesis, .cpp files poorly designed"<<endl;
         }
     } else {
-        out<<"Too few files to do a t-test"<<endl;
+        out<<"Too few files to do a t-test; need 2 or more of this type"<<endl;
     }
     out<<".c files: "<<endl;
     if (c.size()>=2){
-        out<<"T-statistic: "<<tc<<endl;
-        out<<"Degrees of freedom: "<<dc<<endl;
         out<<"p-value: "<<pc<<endl;
         if (pc>0.05){
             out<<"Failed to reject null hypothesis, .c files well designed"<<endl;
@@ -65,22 +58,22 @@ void Loc::printToFileVerbose(ofstream& out){
             out<<"Rejected null hypothesis, .c files poorly designed"<<endl;
         }
     } else {
-        out<<"Too few files to do a t-test"<<endl;
+        out<<"Too few files to do a t-test; need 2 or more of this type"<<endl;
     }
     out<<".hpp files: "<<endl;
     if (hpp.size()>=2){
-        out<<"T-statistic: "<<thpp<<endl;
-        out<<"Degrees of freedom: "<<dhpp<<endl;
-        out<<"p-value: "<< setprecision(3) << scientific<< phpp<<endl;
+        out<<"p-value: "<< phpp<<endl;
         if (phpp>0.05){
             out<<"Failed to reject null hypothesis, .hpp files well designed"<<endl;
         } else {
             out<<"Rejected null hypothesis, .hpp files poorly designed"<<endl;
         }
     } else {
-        out<<"Too few files to do a t-test"<<endl;
+        out<<"Too few files to do a t-test; need 2 or more of this type"<<endl;
     }
     out<<endl;
+    //get rid of scientific notation
+    out<<fixed;
 }
 
 void Loc::evaluate(const char * filePath){

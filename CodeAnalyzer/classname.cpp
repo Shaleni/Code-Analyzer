@@ -55,6 +55,12 @@ void ClassName::evaluate(const char * filePath){
                 if (cName[cName.size()-1]==';'){
                     cName = cName.substring(0, cName.size()-1);
                 }
+
+                //remove '{'
+                if (cName[cName.size()-1]=='{'){
+                    cName = cName.substring(0, cName.size()-1);
+                }
+
                 //remove anything after (and including) a colon
                 int i=0;
                 while (cName[i] != ':' && i<cName.size()){

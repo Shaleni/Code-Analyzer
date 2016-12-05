@@ -161,6 +161,3 @@ int FunctionName::evaluateFunctionName(String fname){
     return fnameScore;
 }
 
-int FunctionName::getScore(){
-    return score;
-}

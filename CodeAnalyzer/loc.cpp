@@ -217,7 +217,3 @@ void Loc::welchTTest(Vector<FileInfo>& toCalculate, const double pMean, const do
     pval = cdf(complement(dist, fabs(tstat)));
     pval*=2;
 }
-
-int Loc::getScore(){
-    return score;
-}

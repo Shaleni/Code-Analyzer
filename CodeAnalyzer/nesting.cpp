@@ -12,17 +12,23 @@ Nesting::Nesting(){
 
 //Prints the short analysis to the file
 void Nesting::printToFileShort(ofstream& out){
-    out << "Printing nesting short" << endl;
-
+    prepareOutput();
+    out << "Code Depth" << endl;
+    out << "Score: " << score <<endl<<endl;
 }
 
 //Prints the verbose analysis to the file
 void Nesting::printToFileVerbose(ofstream& out){
-    out << "Printing nesting verbose" << endl;
-
+    prepareOutput();
+    out << "Code Depth" << endl;
+    out << "Score: " << score <<endl;
+    out << "Deepest level in project: " << (worstScore+4) <<endl;
+    out << "In file: " <<worstFile <<endl;
+    out << endl;
 }
 
 void Nesting::evaluate(const char * path){
+    int nestScore;
     int deepestNesting = 0;
     Stack<char> nestStack;
     char current;
@@ -38,18 +44,33 @@ void Nesting::evaluate(const char * path){
             else{}
 
             //Update deepest nesting variable
-            deepestNesting = deepestNesting > nestStack.size() ? deepestNesting : nestStack.size() ;
-
+            deepestNesting = deepestNesting > nestStack.size() ? deepestNesting : nestStack.size() ; 
         }
     }
     else cout << "Failed to open file." <<endl;
 
-    cout << deepestNesting << endl;
+    //Score the individual file and add to vector of all scores
+    nestScore = (deepestNesting-4) > 0 ? (deepestNesting-4):0;
+    fileScores.add(nestScore);
+
+    //Check if worst file
+    if (nestScore>worstScore){
+        worstScore=nestScore;
+        worstFile = path;
+    }
+
 }
 
-/* There should not be excessive use of nesting in a project
- * Excessive meaning: multiple (more than 2) nested if statements
- * More than 4 nested loops of any kind
- */
+void Nesting::prepareOutput(){
+    int total=0;
+    //Average the squared scores
+    for (int i=0;i<fileScores.size();i++){
+        fileScores[i]*=fileScores[i];
+        total+=fileScores[i];
+    }
+    //Divide total by the number of files
+    score = total/fileScores.size();
+
+}
 
 

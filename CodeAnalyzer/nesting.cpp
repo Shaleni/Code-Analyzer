@@ -22,7 +22,7 @@ void Nesting::printToFileVerbose(ofstream& out){
     prepareOutput();
     out << "Code Depth" << endl;
     out << "Score: " << score <<endl;
-    out << "Deepest level in project: " << (worstScore+4) <<endl;
+    out << "Deepest level in project: " << worstScore <<endl;
     out << "In file: " <<worstFile <<endl;
     out << endl;
 }
@@ -54,8 +54,8 @@ void Nesting::evaluate(const char * path){
     fileScores.add(nestScore);
 
     //Check if worst file
-    if (nestScore>worstScore){
-        worstScore=nestScore;
+    if (deepestNesting>worstScore){
+        worstScore=deepestNesting;
         worstFile = path;
     }
 

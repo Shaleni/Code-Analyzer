@@ -192,8 +192,6 @@ void Loc::prepareData(){
     //fill the vectors by extension
     separateByExtension();
 
-<<<<<<< HEAD
-=======
     //find t-statistics
     welchTTest(h, Pmh, Psh, Pnh, th);
     welchTTest(cpp, Pmcpp, Pscpp, Pncpp, tcpp);
@@ -222,8 +220,6 @@ void Loc::welchTTest(Vector<FileInfo>& toCalculate, const double pMean, const do
     } else {
         variance = sumOfSquares/(toCalculate.size()-1);
     }
-
->>>>>>> quality
 
     //find the standard deviation
     sStddev = sqrt(variance);

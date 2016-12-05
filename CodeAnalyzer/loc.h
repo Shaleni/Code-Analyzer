@@ -47,6 +47,11 @@ private:
     double pc;
     double phpp;
 
+    double hDifference;
+    double cDifference;
+    double cppDifference;
+    double hppDifference;
+
     int score;
     int lines;
     Vector<FileInfo> files;
@@ -60,6 +65,8 @@ private:
     void setScore();
     void insertSorted(FileInfo);
     void prepareData();
+    void computeDifferences();
+    double meanLength (Vector<FileInfo>&);
 protected:
 
 public:

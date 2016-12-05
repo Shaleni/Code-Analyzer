@@ -1,7 +1,7 @@
 #ifndef CODEANALYZER
 #define CODEANALYZER
 
-#define NUM_METRICS 6
+#define NUM_METRICS 5
 
 #include "metrics.h"
 

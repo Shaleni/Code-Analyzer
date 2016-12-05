@@ -26,15 +26,20 @@ void Loc::printToFileShort(ofstream& out){
 void Loc::printToFileVerbose(ofstream& out){
     prepareData();
     setScore();
+    computeDifferences();
     out<<"Lines of Code per File"<<endl;
     out<<"Score: " << score <<endl;
+    out<< "Alpha value: 0.05" <<endl;
     out<<".h files: "<<endl;
     if (h.size()>=2){
         out<<"p-value: "<< setprecision(3) << scientific << ph<<endl;
         if (ph>0.05){
-            out<<"Failed to reject null hypothesis, .h files well designed"<<endl;
-        } else {
-            out<<"Rejected null hypothesis, .h files poorly designed"<<endl;
+            out<<"Header (.h) files well designed."<<endl;
+        } else if (hDifference>0) {
+            out<<"Mean header file (.h) length too large."<<endl;
+        }
+        else {
+            out << "Mean header file (.h) length too short." <<endl;
         }
     } else {
         out<<"Too few files to do a t-test; need 2 or more of this type"<<endl;
@@ -43,9 +48,12 @@ void Loc::printToFileVerbose(ofstream& out){
     if (cpp.size()>=2){
         out<<"p-value: "<<pcpp<<endl;
         if (pcpp>0.05){
-            out<<"Failed to reject null hypothesis, .cpp files well designed"<<endl;
-        } else {
-            out<<"Rejected null hypothesis, .cpp files poorly designed"<<endl;
+            out<<"Code files (.cpp) well designed."<<endl;
+        } else if (cppDifference>0){
+            out<<"Mean .cpp file length too large."<<endl;
+        }
+        else {
+            out << "Mean .cpp file length too short." <<endl;
         }
     } else {
         out<<"Too few files to do a t-test; need 2 or more of this type"<<endl;
@@ -54,9 +62,12 @@ void Loc::printToFileVerbose(ofstream& out){
     if (c.size()>=2){
         out<<"p-value: "<<pc<<endl;
         if (pc>0.05){
-            out<<"Failed to reject null hypothesis, .c files well designed"<<endl;
-        } else {
-            out<<"Rejected null hypothesis, .c files poorly designed"<<endl;
+            out<<"Code (.c) files well designed."<<endl;
+        } else if (cDifference>0){
+            out<<"Mean .c file length too large"<<endl;
+        }
+        else {
+            out <<"Mean .c file length too short" <<endl;
         }
     } else {
         out<<"Too few files to do a t-test; need 2 or more of this type"<<endl;
@@ -65,9 +76,12 @@ void Loc::printToFileVerbose(ofstream& out){
     if (hpp.size()>=2){
         out<<"p-value: "<< phpp<<endl;
         if (phpp>0.05){
-            out<<"Failed to reject null hypothesis, .hpp files well designed"<<endl;
-        } else {
-            out<<"Rejected null hypothesis, .hpp files poorly designed"<<endl;
+            out<<"Header (.hpp) files well designed"<<endl;
+        } else if(hppDifference>0) {
+            out<<"Mean .hpp file length too large"<<endl;
+        }
+        else {
+            out << "Mean .hpp file length too short" <<endl;
         }
     } else {
         out<<"Too few files to do a t-test; need 2 or more of this type"<<endl;
@@ -216,4 +230,20 @@ void Loc::welchTTest(Vector<FileInfo>& toCalculate, const double pMean, const do
     students_t dist(dOF);
     pval = cdf(complement(dist, fabs(tstat)));
     pval*=2;
+}
+
+void Loc::computeDifferences() {
+    hDifference = meanLength(h)- Pmh;
+    cppDifference = meanLength(cpp)- Pmcpp;
+    cDifference = meanLength(c)-Pmc;
+    hppDifference = meanLength(hpp)-Pmhpp;
+}
+
+double Loc::meanLength(Vector<FileInfo>& toCalculate){
+    int totalLength=0;
+    for (int i=0;i<toCalculate.size();i++){
+        totalLength+=toCalculate[i].getLnCodeLines();
+    }
+
+    return (double(totalLength)/toCalculate.size());
 }

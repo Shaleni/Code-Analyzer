@@ -49,7 +49,7 @@ void FunctionName::evaluate(const char * filePath){
         while (!fin.eof()){
             fin>>codeBlock;
             String cB(codeBlock);
-            if (cB[cB.size()]=='{'){
+            if (cB[cB.size()-1]=='{'){
                 //is some sort of structure
                 cout<<"code block: "<<cB<<endl;
 

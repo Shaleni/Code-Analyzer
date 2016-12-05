@@ -49,24 +49,25 @@ void FunctionName::evaluate(const char * filePath){
         while (!fin.eof()){
             fin>>codeBlock;
             String cB(codeBlock);
-            if (cB == "class"){
-                fin>>FunctionName;
-                String cName(FunctionName);
-                //remove trailing semicolons
-                if (cName[cName.size()-1]==';'){
-                    cName = cName.substring(0, cName.size()-1);
-                }
-                //remove anything after (and including) a colon
-                int i=0;
-                while (cName[i] != ':' && i<cName.size()){
-                    i++;
-                }
-                if (cName[i] == ':'){
-                    cName = cName.substring(0, i);
-                }
+            if (cB[cB.size()]=='{'){
+                //is some sort of structure
+                cout<<"code block: "<<cB<<endl;
 
-                //add class name to the vector of FunctionNames
-                functionNames.add(cName);
+//                //remove trailing semicolons
+//                if (cName[cName.size()-1]==';'){
+//                    cName = cName.substring(0, cName.size()-1);
+//                }
+//                //remove anything after (and including) a colon
+//                int i=0;
+//                while (cName[i] != ':' && i<cName.size()){
+//                    i++;
+//                }
+//                if (cName[i] == ':'){
+//                    cName = cName.substring(0, i);
+//                }
+
+//                //add class name to the vector of FunctionNames
+//                functionNames.add(cName);
             }
         }
 
@@ -108,56 +109,58 @@ void FunctionName::generateScore(){
  * contain no numbers
  * not be in all caps
  */
-int FunctionName::evaluateFunctionName(String cname){
-    int cnameScore=0;
+int FunctionName::evaluateFunctionName(String fname){
+    int fnameScore=0;
     //check if it starts with an uppercase letter
-    String firstLetter(cname);
+    String firstLetter(fname);
     firstLetter.toLowerCase();
-    if (firstLetter[0]!=cname[0]){
+    if (firstLetter[0]!=fname[0]){
         //changing to lowercase changed the ascii value
         //this means that the letter must have been uppercase
-        //score remains 0
+        //add one to score
+         fnameScore++;
     } else {
         //if the lowercase version equals the first letter,
-        //was not capitalized. Add one to the score
-        cnameScore++;
+        //was not capitalized. score remains 0
     }
 
-    //check the length of the class name
-    if (cname.size()>=20){
+    //check the length of the function name
+    if (fname.size()>=20){
         //too long, add to the score
-        cnameScore++;
+        fnameScore++;
     }
 
-    //make sure the class name contains no symbols ($)
+    //make sure the function name contains no symbols ($)
     int j=0;
-    while (cname[j] != '$' && j<cname.size()){
+    while (fname[j] != '$' && j<fname.size()){
         j++;
     }
-    if(cname[j]=='$'){
+    if(fname[j]=='$'){
         //contains a symbol. increment score
-        cnameScore++;
+        fnameScore++;
     }
 
-    //make sure the class name contains no numbers
+    //make sure the function name contains no numbers
     bool numFlag=false;
-    for (int i=0; i<cname.size(); i++){
-        if (cname[i]=='0' || cname[i]=='1' || cname[i]=='2' ||
-            cname[i]=='3' || cname[i]=='4' || cname[i]=='5' ||
-            cname[i]=='6' || cname[i]=='7' || cname[i]=='8' ||
-            cname[i]=='9'){
+    for (int i=0; i<fname.size(); i++){
+        if (fname[i]=='0' || fname[i]=='1' || fname[i]=='2' ||
+            fname[i]=='3' || fname[i]=='4' || fname[i]=='5' ||
+            fname[i]=='6' || fname[i]=='7' || fname[i]=='8' ||
+            fname[i]=='9'){
             //contains a number
             numFlag=true;
         }
     }
     if (numFlag){
         //contains a number
-        cnameScore++;
+        fnameScore++;
     }
 
     //check for all caps
 
-    return cnameScore;
+    return fnameScore;
 }
 
-// See txt file for standards on variable name quality
+int FunctionName::getScore(){
+    return score;
+}

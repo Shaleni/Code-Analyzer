@@ -19,6 +19,7 @@ void Loc::printToFileShort(ofstream& out){
     setScore();
     out<<"Lines of Code per File"<<endl;
     out<<"Score: " << score <<endl;
+    out<<endl;
 }
 
 //Prints the verbose analysis to the file
@@ -215,4 +216,8 @@ void Loc::welchTTest(Vector<FileInfo>& toCalculate, const double pMean, const do
     students_t dist(dOF);
     pval = cdf(complement(dist, fabs(tstat)));
     pval*=2;
+}
+
+int Loc::getScore(){
+    return score;
 }

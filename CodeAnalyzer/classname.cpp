@@ -47,6 +47,20 @@ void ClassName::evaluate(const char * filePath){
     if (fin.is_open()){
         while (!fin.eof()){
             fin>>codeBlock;
+            String comment;
+            if (codeBlock[0]=='/' && codeBlock[1]=='*'){
+                //open comment
+                do{
+                    fin>>codeBlock;
+                    comment=codeBlock;
+                    while(comment.size()<2){
+                        fin>>codeBlock;
+                        comment=codeBlock;
+                    }
+                }
+                while (comment[comment.size()-1]!='/' && comment[comment.size()-2]!='*');
+            }
+
             String cB(codeBlock);
             if (cB == "class"){
                 fin>>className;
@@ -73,7 +87,7 @@ void ClassName::evaluate(const char * filePath){
                 //add class name to the vector of classNames
                 //make sure not a templated one
                 if (cName=="class" || cName=="and" || cName=="name" || cName=="names"
-                        || cName=="//All"){
+                        || cName=="//All" || cName=="extends"){
                     //do nothing
                 } else {
                     classNames.add(cName);
@@ -89,7 +103,7 @@ void ClassName::evaluate(const char * filePath){
 
 }
 
-/* Go through each class name and score it. Count the number
+/* Go through each class nameT and score it. Count the number
  * of each score type in an int array, with the index being the
  * score */
 //consider using a somewhat trivial hashtable instead of an array

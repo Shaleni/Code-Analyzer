@@ -15,6 +15,7 @@
 #include "nesting.h"
 #include "classname.h"
 #include "comments.h"
+#include "functionname.h"
 
 CodeAnalyzer::CodeAnalyzer (){
     //Initialize metrics
@@ -23,6 +24,7 @@ CodeAnalyzer::CodeAnalyzer (){
     metrics[2] = new Comments;
     metrics[3] = new ClassName;
     metrics[4] = new Nesting;
+    metrics[5] = new FunctionName;
 }
 
 void CodeAnalyzer::runMetrics(const char * root) {
@@ -30,9 +32,15 @@ void CodeAnalyzer::runMetrics(const char * root) {
 }
 
 void CodeAnalyzer::writeOutput(const char * file, bool verbose){
+    computeOverallScore();
+
     ofstream out;
     out.open(file);
     if (out.is_open()){
+
+        //Print the overall score for the whole project
+        out << "Average score: " << overallScore << endl <<endl;
+
         //Loop over the array of metrics, printing the output each time
         for (int i=0; i<NUM_METRICS;i++){
             //Check if verbose flag has been set
@@ -85,4 +93,18 @@ void CodeAnalyzer::readDirectory (const char * loc){
         closedir (dir);
     } else std::cout << "Failed to open directory." <<std::endl;
 
+}
+
+void CodeAnalyzer::computeOverallScore(){
+    int sumScore=0;
+
+     for (int i=0; i<NUM_METRICS;i++) {
+        sumScore+=metrics[i]->getScore();
+     }
+     overallScore=sumScore/NUM_METRICS;
+     cout << overallScore <<endl;
+}
+
+CodeAnalyzer::~CodeAnalyzer(){
+    for (int i=0; i<NUM_METRICS;i++) delete metrics[i];
 }

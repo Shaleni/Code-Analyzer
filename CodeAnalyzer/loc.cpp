@@ -9,12 +9,14 @@ Loc::Loc(){
     tcpp = 0;
     tc = 0;
     thpp = 0;
+    dh=dcpp=dc=dhpp=0;
+    ph=pcpp=pc=phpp=0;
 }
 
 //Prints the short analysis to the file
 void Loc::printToFileShort(ofstream& out){
     prepareData();
-    //setMetricScore();
+    setScore();
     out<<"Lines of Code per File"<<endl;
     out<<"Score: " << score <<endl;
 }
@@ -22,13 +24,62 @@ void Loc::printToFileShort(ofstream& out){
 //Prints the verbose analysis to the file
 void Loc::printToFileVerbose(ofstream& out){
     prepareData();
-    //setMetricScore();
+    setScore();
     out<<"Lines of Code per File"<<endl;
-    //out<<"Score: " << score <<endl;
-    out<<"T-statistic for h files: "<<th<<endl;
-    out<<"T-statistic for cpp files: "<<tcpp<<endl;
-    out<<"T-statistic for c files: "<<tc<<endl;
-    out<<"T-statistic for hpp files: "<<thpp<<endl;
+    out<<"Score: " << score <<endl;
+    out<<".h files: "<<endl;
+    if (h.size()>=2){
+
+        out<<"T-statistic: "<<th<<endl;
+        out<<"Degrees of freedom: "<<dh<<endl;
+        out<<"p-value: "<< setprecision(3) << scientific<< ph<<endl;
+        if (ph>0.05){
+            out<<"Failed to reject null hypothesis, .h files well designed"<<endl;
+        } else {
+            out<<"Rejected null hypothesis, .h files poorly designed"<<endl;
+        }
+    } else {
+        out<<"Too few files to do a t-test"<<endl;
+    }
+    out<<".cpp files: "<<endl;
+    if (cpp.size()>=2){
+        out<<"T-statistic: "<<tcpp<<endl;
+        out<<"Degrees of freedom: "<<dcpp<<endl;
+        out<<"p-value: "<<pcpp<<endl;
+        if (pcpp>0.05){
+            out<<"Failed to reject null hypothesis, .cpp files well designed"<<endl;
+        } else {
+            out<<"Rejected null hypothesis, .cpp files poorly designed"<<endl;
+        }
+    } else {
+        out<<"Too few files to do a t-test"<<endl;
+    }
+    out<<".c files: "<<endl;
+    if (c.size()>=2){
+        out<<"T-statistic: "<<tc<<endl;
+        out<<"Degrees of freedom: "<<dc<<endl;
+        out<<"p-value: "<<pc<<endl;
+        if (pc>0.05){
+            out<<"Failed to reject null hypothesis, .c files well designed"<<endl;
+        } else {
+            out<<"Rejected null hypothesis, .c files poorly designed"<<endl;
+        }
+    } else {
+        out<<"Too few files to do a t-test"<<endl;
+    }
+    out<<".hpp files: "<<endl;
+    if (hpp.size()>=2){
+        out<<"T-statistic: "<<thpp<<endl;
+        out<<"Degrees of freedom: "<<dhpp<<endl;
+        out<<"p-value: "<< setprecision(3) << scientific<< phpp<<endl;
+        if (phpp>0.05){
+            out<<"Failed to reject null hypothesis, .hpp files well designed"<<endl;
+        } else {
+            out<<"Rejected null hypothesis, .hpp files poorly designed"<<endl;
+        }
+    } else {
+        out<<"Too few files to do a t-test"<<endl;
+    }
     out<<endl;
 }
 
@@ -55,121 +106,36 @@ void Loc::separateByExtension(){
     }
 }
 
-//use ln(codeLines)
-void Loc::determineOutliers(Vector<FileInfo>& toFindOut){
-    //find the median of the code
-    int medIndex=0;
-    int Q2=0;
-    //for an even-length vector, average the two in the middle
-    if (toFindOut.size()%2 == 0){
-        medIndex = toFindOut.size()/2;
-        Q2 = (toFindOut[medIndex].getLnCodeLines() + toFindOut[medIndex-1].getLnCodeLines())/2;
+//use p-values from files to reject/accept null hypothesis and assign score accordingly
+//Ho: there is no difference in means between sample and population
+//alpha = 0.05
+void Loc::setScore(){
+    //h file
+    if (ph>0.05){
+        //FTR - likely due to chance
     } else {
-        medIndex = (toFindOut.size()-1)/2;
-        Q2 = toFindOut[medIndex].getLnCodeLines();
+        score++;
     }
 
-    //find the lower quartile (Q1)
-    int Q1=0;
-    int Q1index=0;
-    //even median index
-    if (medIndex%2 == 0){
-        Q1index = medIndex/2;
-        Q1 = (toFindOut[Q1index].getLnCodeLines() + toFindOut[Q1index-1].getLnCodeLines())/2;
+    //cpp file
+    if (pcpp>0.05){
+        //FTR - likely due to chance
     } else {
-        Q1index = (medIndex-1)/2;
-        Q1 = toFindOut[Q1index].getLnCodeLines();
+        score++;
     }
 
-    //find the upper quartile (Q3)
-    int Q3=0;
-    int Q3index=0;
-    //even median index
-    if (medIndex%2 == 0){
-        Q3index = medIndex + (medIndex/2);
-        Q3 = (toFindOut[Q3index].getLnCodeLines() + toFindOut[Q3index-1].getLnCodeLines())/2;
+    //c file
+    if (pc>0.05){
+        //FTR - likely due to chance
     } else {
-        Q3index = medIndex + ((medIndex-1)/2);
-        Q3 = toFindOut[Q3index].getLnCodeLines();
+        score++;
     }
 
-
-    //find the IQR
-    int iqr = Q3-Q1;
-
-    //find the inner fence for minor outliers
-    int innerUFence = Q3 + (iqr*1.5);
-    int innerLFence = Q1 - (iqr*1.5);
-
-    //find the outer fence for major outliers
-    int outerUFence = Q3 + (iqr*3);
-    int outerLFence = Q1 - (iqr*3);
-
-    /* Finding and scoring outliers
-       Major outliers get score 5,
-       Minor outliers get score 4 */
-
-    //loop through and determine outliers:
-    for (int i=0; i<toFindOut.size(); i++){
-        //check from low range to high range
-        if (toFindOut[i].getLnCodeLines() <= outerLFence){
-            //major outlier
-            toFindOut[i].setFileScore(5);
-        } else if (toFindOut[i].getLnCodeLines() <= innerLFence){
-            //minor outlier
-            toFindOut[i].setFileScore(4);
-        } else if (toFindOut[i].getLnCodeLines() >= outerUFence){
-            //major outlier
-            toFindOut[i].setFileScore(5);
-        } else if (toFindOut[i].getLnCodeLines() >= innerUFence){
-            //minor outlier
-            toFindOut[i].setFileScore(4);
-        } else {
-            //not an outlier, find score
-            setScore(toFindOut, i);
-        }
-    }
-
-}
-
-//use standard deviation to rank files that are not outliers
-/* 3+ std deviations away is a 3
- * 2-3 is a 2
- * 1-2 is a 1
- * <1 is a 0 */
-void Loc::setScore(Vector<FileInfo> & toFindOut, int index){
-    int mean=0;
-    double variance=0;
-    double stdDev=0;
-
-    //find the mean
-    for (int i=0; i<toFindOut.size(); i++){
-        mean+=toFindOut[i].getLnCodeLines();
-    }
-    mean = mean/toFindOut.size();
-
-    //find the variance
-    int sumOfSquares=0;
-    for(int j=0; j<toFindOut.size(); j++){
-        sumOfSquares += (toFindOut[j].getLnCodeLines()-mean)*(toFindOut[j].getLnCodeLines()-mean);
-    }
-    variance = sumOfSquares/(toFindOut.size()-1);
-
-    //find the standard deviation
-    stdDev = sqrt(variance);
-
-    //assign scores
-    double difference = abs(toFindOut[index].getLnCodeLines()-mean);
-
-    //compare to std deviations away starting high
-    if (difference >= (stdDev*3)){
-        toFindOut[index].setFileScore(3);
-    } else if (difference >= (stdDev*2)){
-        toFindOut[index].setFileScore(2);
-    } else if (difference >= stdDev){
-        toFindOut[index].setFileScore(1);
+    //cpp file
+    if (phpp>0.05){
+        //FTR - likely due to chance
     } else {
-        toFindOut[index].setFileScore(0);
+        score++;
     }
 }
 
@@ -193,13 +159,30 @@ void Loc::prepareData(){
     separateByExtension();
 
     //find t-statistics
-    welchTTest(h, Pmh, Psh, Pnh, th);
-    welchTTest(cpp, Pmcpp, Pscpp, Pncpp, tcpp);
-    welchTTest(c, Pmc, Psc, Pnc, tc);
-    welchTTest(hpp, Pmhpp, Pshpp, Pnhpp, thpp);
+    //make sure there is more than one file before calculating
+    if (h.size()>=2){
+        welchTTest(h, Pmh, Psh, Pnh, th, dh, ph);
+    } else {
+        ph=1;
+    }
+    if (cpp.size()>=2){
+        welchTTest(cpp, Pmcpp, Pscpp, Pncpp, tcpp, dcpp, pcpp);
+    } else {
+        pcpp=1;
+    }
+    if (c.size()>=2){
+        welchTTest(c, Pmc, Psc, Pnc, tc, dc, pc);
+    } else {
+        pc = 1;
+    }
+    if (hpp.size()>=2){
+        welchTTest(hpp, Pmhpp, Pshpp, Pnhpp, thpp, dhpp, phpp);
+    } else {
+        phpp = 1;
+    }
 }
 
-void Loc::welchTTest(Vector<FileInfo>& toCalculate, const double pMean, const double pStddev, const unsigned pSize, double& tstat){
+void Loc::welchTTest(Vector<FileInfo>& toCalculate, const double pMean, const double pStddev, const unsigned pSize, double& tstat, double& dOF, double& pval){
     //sample mean
     double sMean = 0;
     for (int i=0; i<toCalculate.size(); i++){
@@ -211,30 +194,32 @@ void Loc::welchTTest(Vector<FileInfo>& toCalculate, const double pMean, const do
     double variance = 0;
     double sStddev = 0;
     //find the variance
-    int sumOfSquares=0;
+    double sumOfSquares=0;
     for(int j=0; j<toCalculate.size(); j++){
         sumOfSquares += (toCalculate[j].getLnCodeLines()-sMean)*(toCalculate[j].getLnCodeLines()-sMean);
     }
-    if (toCalculate.size()==1){
-        variance = sumOfSquares;
-    } else {
-        variance = sumOfSquares/(toCalculate.size()-1);
-    }
+
+    variance = sumOfSquares/(toCalculate.size()-1);
 
     //find the standard deviation
     sStddev = sqrt(variance);
 
     // Degrees of freedom:
-    double v = pStddev * pStddev / pSize + sStddev * sStddev / toCalculate.size();
-    v *= v;
+    dOF = pStddev * pStddev / pSize + sStddev * sStddev / toCalculate.size();
+    dOF *= dOF;
     double t1 = pStddev * pStddev / pSize;
     t1 *= t1;
     t1 /=  (pSize - 1);
     double t2 = sStddev * sStddev / toCalculate.size();
     t2 *= t2;
     t2 /= (toCalculate.size() - 1);
-    v /= (t1 + t2);
+    dOF /= (t1 + t2);
 
     // t-statistic:
     tstat = (pMean - sMean) / sqrt(pStddev * pStddev / pSize + sStddev * sStddev / toCalculate.size());
+
+    //use boost
+    students_t dist(dOF);
+    pval = cdf(complement(dist, fabs(tstat)));
+    pval*=2;
 }

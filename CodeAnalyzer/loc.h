@@ -3,6 +3,8 @@
 #include "metrics.h"
 #include "fileinfo.h"
 #include "cmath"
+#include <boost/math/distributions/students_t.hpp>
+using namespace boost::math;
 
 //Class to determine the lines of code per file in the project
 //Inherits from abstract class Metrics
@@ -33,6 +35,18 @@ private:
     double tc;
     double thpp;
 
+    //degrees of freedom
+    double dh;
+    double dcpp;
+    double dc;
+    double dhpp;
+
+    //p-values
+    double ph;
+    double pcpp;
+    double pc;
+    double phpp;
+
     int score;
     int lines;
     Vector<FileInfo> files;
@@ -42,12 +56,10 @@ private:
     Vector<FileInfo> cpp;
 
     void separateByExtension();
-    void determineOutliers(Vector<FileInfo>&);
-    void welchTTest(Vector<FileInfo>&, const double, const double, const unsigned, double&);
-    void setScore(Vector<FileInfo>&, int);
+    void welchTTest(Vector<FileInfo>&, const double, const double, const unsigned, double&, double&, double&);
+    void setScore();
     void insertSorted(FileInfo);
     void prepareData();
-    void setMetricScore();
 protected:
 
 public:

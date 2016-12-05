@@ -19,7 +19,7 @@ void Loc::printToFileShort(ofstream& out){
     setScore();
     out<<"Lines of Code per File"<<endl;
     out<<"Score: " << score <<endl;
-    out <<endl;
+    out<<endl;
 }
 
 //Prints the verbose analysis to the file

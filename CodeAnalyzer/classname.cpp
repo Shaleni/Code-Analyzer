@@ -72,6 +72,7 @@ void ClassName::evaluate(const char * filePath){
 
                 //add class name to the vector of classNames
                 classNames.add(cName);
+                cout<<cName<<endl;
             }
         }
 

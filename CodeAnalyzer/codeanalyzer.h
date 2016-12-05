@@ -1,7 +1,7 @@
 #ifndef CODEANALYZER
 #define CODEANALYZER
 
-#define NUM_METRICS 5
+#define NUM_METRICS 6
 
 #include "metrics.h"
 
@@ -10,15 +10,16 @@ public:
     CodeAnalyzer();
     void runMetrics (const char *);
     void writeOutput (const char *, bool);
+    ~CodeAnalyzer();
 
 private:
-
-    void readDirectory (const char *);
-    int isDir(const char*);
-
+    int overallScore;
     Metric * metrics [NUM_METRICS];
 
 
+    void readDirectory (const char *);
+    int isDir(const char*);
+    void computeOverallScore();
 };
 
 

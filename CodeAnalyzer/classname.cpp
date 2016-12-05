@@ -71,8 +71,14 @@ void ClassName::evaluate(const char * filePath){
                 }
 
                 //add class name to the vector of classNames
-                classNames.add(cName);
-                cout<<cName<<endl;
+                //make sure not a templated one
+                if (cName=="class" || cName=="and" || cName=="name" || cName=="names"
+                        || cName=="//All"){
+                    //do nothing
+                } else {
+                    classNames.add(cName);
+                    cout<<cName<<endl;
+                }
             }
         }
 
@@ -88,22 +94,22 @@ void ClassName::evaluate(const char * filePath){
  * score */
 //consider using a somewhat trivial hashtable instead of an array
 void ClassName::generateScore(){
-     int nameScore = 0;
-     //loop through vector of class names
-     for (int i=0; i<classNames.size(); i++){
-         nameScore = evaluateClassName(classNames[i]);
-         //statement to assign score to int array
-         scoreTracker[nameScore]++;
-     }
+    int nameScore = 0;
+    //loop through vector of class names
+    for (int i=0; i<classNames.size(); i++){
+        nameScore = evaluateClassName(classNames[i]);
+        //statement to assign score to int array
+        scoreTracker[nameScore]++;
+    }
 
-     //use the mode of file scores for the overall metric score
-     score=0;
+    //use the mode of file scores for the overall metric score
+    score=0;
 
-     for (int i=0; i<5; i++){
-         if (scoreTracker[i+1]>scoreTracker[i]){
-             score = i+1;
-         }
-     }
+    for (int i=0; i<5; i++){
+        if (scoreTracker[i+1]>scoreTracker[i]){
+            score = i+1;
+        }
+    }
 }
 
 //evaluate a class name
@@ -149,9 +155,9 @@ int ClassName::evaluateClassName(String cname){
     bool numFlag=false;
     for (int i=0; i<cname.size(); i++){
         if (cname[i]=='0' || cname[i]=='1' || cname[i]=='2' ||
-            cname[i]=='3' || cname[i]=='4' || cname[i]=='5' ||
-            cname[i]=='6' || cname[i]=='7' || cname[i]=='8' ||
-            cname[i]=='9'){
+                cname[i]=='3' || cname[i]=='4' || cname[i]=='5' ||
+                cname[i]=='6' || cname[i]=='7' || cname[i]=='8' ||
+                cname[i]=='9'){
             //contains a number
             numFlag=true;
         }

@@ -17,7 +17,7 @@ FunctionName::FunctionName(){
 //Prints the short analysis to the file
 void FunctionName::printToFileShort(ofstream& out){
     generateScore();
-    out <<"Class Name Quality" <<endl;
+    out <<"Function Name Quality" <<endl;
     out<<"Score: "<<score<<endl;
     out<<endl;
 }
@@ -25,15 +25,15 @@ void FunctionName::printToFileShort(ofstream& out){
 //Prints the verbose analysis to the file
 void FunctionName::printToFileVerbose(ofstream& out){
     generateScore();
-    out <<"Class Name Quality" <<endl;
+    out <<"Function Name Quality" <<endl;
     out<<"Overall score: "<<score<<endl;
     out<<"Score breakdown: "<<endl;
-    out<<"Number of class names that scored a 0: "<<scoreTracker[0]<<endl;
-    out<<"Number of class names that scored a 1: "<<scoreTracker[1]<<endl;
-    out<<"Number of class names that scored a 2: "<<scoreTracker[2]<<endl;
-    out<<"Number of class names that scored a 3: "<<scoreTracker[3]<<endl;
-    out<<"Number of class names that scored a 4: "<<scoreTracker[4]<<endl;
-    out<<"Number of class names that scored a 5: "<<scoreTracker[5]<<endl;
+    out<<"Number of function names that scored a 0: "<<scoreTracker[0]<<endl;
+    out<<"Number of function names that scored a 1: "<<scoreTracker[1]<<endl;
+    out<<"Number of function names that scored a 2: "<<scoreTracker[2]<<endl;
+    out<<"Number of function names that scored a 3: "<<scoreTracker[3]<<endl;
+    out<<"Number of function names that scored a 4: "<<scoreTracker[4]<<endl;
+    out<<"Number of function names that scored a 5: "<<scoreTracker[5]<<endl;
     out<<endl;
 }
 

@@ -183,24 +183,6 @@ void Loc::prepareData(){
     //fill the vectors by extension
     separateByExtension();
 
-    //print data to console
-    //h
-    for (int i=0; i<h.size(); i++){
-        cout<<h[i].getCodeLines()<<" 0"<<endl;
-    }
-    //cpp
-    for (int i=0; i<cpp.size(); i++){
-        cout<<cpp[i].getCodeLines()<<" 1"<<endl;
-    }
-    //c
-    for (int i=0; i<c.size(); i++){
-        cout<<c[i].getCodeLines()<<" 2"<<endl;
-    }
-    //hpp
-    for (int i=0; i<hpp.size(); i++){
-        cout<<hpp[i].getCodeLines()<<" 3"<<endl;
-    }
-
 
     //find outliers and score files
     determineOutliers(h);

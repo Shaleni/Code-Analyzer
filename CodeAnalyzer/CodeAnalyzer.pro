@@ -13,6 +13,8 @@ HEADERS += \
     loc.h \
     nesting.h \
     fileinfo.h \
+    stack.hpp\
+    linkedlist.hpp \
     classname.h
 
 SOURCES += main.cpp \

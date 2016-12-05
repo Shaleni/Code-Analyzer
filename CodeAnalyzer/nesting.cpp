@@ -1,9 +1,11 @@
 //Class to determine the nesting (control statement quality) in the project
 //Inherits from abstract class Metrics
 #include "nesting.h"
+#include "stack.hpp"
 
+using namespace std;
 
-//constructor
+//Constructor
 Nesting::Nesting(){
 
 }
@@ -20,8 +22,29 @@ void Nesting::printToFileVerbose(ofstream& out){
 
 }
 
-void Nesting::evaluate(const char *){
+void Nesting::evaluate(const char * path){
+    int deepestNesting = 0;
+    Stack<char> nestStack;
+    char current;
+    ifstream fin;
+    fin.open (path);
+    if (fin.is_open()) {
+        while (fin >> current) {
+            //If open brace, push onto stack
+            if (current=='{') nestStack.push(current);
+            //If close brace, pop off stack
+            else if (current == '}') nestStack.pop();
+            //If not a brace, do nothing
+            else{}
 
+            //Update deepest nesting variable
+            deepestNesting = deepestNesting > nestStack.size() ? deepestNesting : nestStack.size() ;
+
+        }
+    }
+    else cout << "Failed to open file." <<endl;
+
+    cout << deepestNesting << endl;
 }
 
 /* There should not be excessive use of nesting in a project

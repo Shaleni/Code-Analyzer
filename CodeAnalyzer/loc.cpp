@@ -5,6 +5,10 @@
 Loc::Loc(){
     score=0;
     lines=0;
+    th = 0;
+    tcpp = 0;
+    tc = 0;
+    thpp = 0;
 }
 
 //Prints the short analysis to the file
@@ -20,7 +24,12 @@ void Loc::printToFileVerbose(ofstream& out){
     prepareData();
     //setMetricScore();
     out<<"Lines of Code per File"<<endl;
-    out<<"Score: " << score <<endl;
+    //out<<"Score: " << score <<endl;
+    out<<"T-statistic for h files: "<<th<<endl;
+    out<<"T-statistic for cpp files: "<<tcpp<<endl;
+    out<<"T-statistic for c files: "<<tc<<endl;
+    out<<"T-statistic for hpp files: "<<thpp<<endl;
+    out<<endl;
 }
 
 void Loc::evaluate(const char * filePath){
@@ -183,10 +192,53 @@ void Loc::prepareData(){
     //fill the vectors by extension
     separateByExtension();
 
+<<<<<<< HEAD
+=======
+    //find t-statistics
+    welchTTest(h, Pmh, Psh, Pnh, th);
+    welchTTest(cpp, Pmcpp, Pscpp, Pncpp, tcpp);
+    welchTTest(c, Pmc, Psc, Pnc, tc);
+    welchTTest(hpp, Pmhpp, Pshpp, Pnhpp, thpp);
+}
 
-    //find outliers and score files
-    determineOutliers(h);
-    determineOutliers(cpp);
-    determineOutliers(c);
-    determineOutliers(hpp);
+void Loc::welchTTest(Vector<FileInfo>& toCalculate, const double pMean, const double pStddev, const unsigned pSize, double& tstat){
+    //sample mean
+    double sMean = 0;
+    for (int i=0; i<toCalculate.size(); i++){
+        sMean += toCalculate[i].getLnCodeLines();
+    }
+    sMean = sMean/toCalculate.size();
+
+    //sample standard deviation
+    double variance = 0;
+    double sStddev = 0;
+    //find the variance
+    int sumOfSquares=0;
+    for(int j=0; j<toCalculate.size(); j++){
+        sumOfSquares += (toCalculate[j].getLnCodeLines()-sMean)*(toCalculate[j].getLnCodeLines()-sMean);
+    }
+    if (toCalculate.size()==1){
+        variance = sumOfSquares;
+    } else {
+        variance = sumOfSquares/(toCalculate.size()-1);
+    }
+
+>>>>>>> quality
+
+    //find the standard deviation
+    sStddev = sqrt(variance);
+
+    // Degrees of freedom:
+    double v = pStddev * pStddev / pSize + sStddev * sStddev / toCalculate.size();
+    v *= v;
+    double t1 = pStddev * pStddev / pSize;
+    t1 *= t1;
+    t1 /=  (pSize - 1);
+    double t2 = sStddev * sStddev / toCalculate.size();
+    t2 *= t2;
+    t2 /= (toCalculate.size() - 1);
+    v /= (t1 + t2);
+
+    // t-statistic:
+    tstat = (pMean - sMean) / sqrt(pStddev * pStddev / pSize + sStddev * sStddev / toCalculate.size());
 }

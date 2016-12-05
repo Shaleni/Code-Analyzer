@@ -1,25 +1,26 @@
-#ifndef CLASSNAME
-#define CLASSNAME
+#ifndef FUNCTIONNAME
+#define FUNCTIONNAME
 #include "metrics.h"
 
-//Class to determine the class name quality in the project
+//Class to determine the function name quality in the project
 //Inherits from abstract class Metrics
-class ClassName:public Metric{
+class FunctionName:public Metric{
 private:
     int score;
     int scoreTracker[6];
-    Vector<String> classNames;
+    Vector<String> functionNames;
     void generateScore();
 
-    int evaluateClassName(String);
+    int evaluateFunctionName(String);
 protected:
 
 public:
-    ClassName();
+    FunctionName();
     void printToFileShort(ofstream&);
     void printToFileVerbose(ofstream&);
     void evaluate(const char *);
 };
 
-#endif // CLASSNAME
+
+#endif // FUNCTIONNAME
 

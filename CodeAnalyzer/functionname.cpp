@@ -1,9 +1,10 @@
+
 //Class to determine the variable name quality in the project
 //Inherits from abstract class Metrics
-#include "classname.h"
+#include "functionname.h"
 
 //Constructors
-ClassName::ClassName(){
+FunctionName::FunctionName(){
     score=0;
     //initialize scoreTracker to 0
     for (int i=0; i<6; i++){
@@ -14,7 +15,7 @@ ClassName::ClassName(){
 
 
 //Prints the short analysis to the file
-void ClassName::printToFileShort(ofstream& out){
+void FunctionName::printToFileShort(ofstream& out){
     generateScore();
     out <<"Class Name Quality" <<endl;
     out<<"Score: "<<score<<endl;
@@ -22,7 +23,7 @@ void ClassName::printToFileShort(ofstream& out){
 }
 
 //Prints the verbose analysis to the file
-void ClassName::printToFileVerbose(ofstream& out){
+void FunctionName::printToFileVerbose(ofstream& out){
     generateScore();
     out <<"Class Name Quality" <<endl;
     out<<"Overall score: "<<score<<endl;
@@ -36,10 +37,10 @@ void ClassName::printToFileVerbose(ofstream& out){
     out<<endl;
 }
 
-void ClassName::evaluate(const char * filePath){
+void FunctionName::evaluate(const char * filePath){
     //variable to hold a line of code
     char codeBlock[100];
-    char className[100];
+    char FunctionName[100];
 
     fstream fin;
     fin.open(filePath);
@@ -49,8 +50,8 @@ void ClassName::evaluate(const char * filePath){
             fin>>codeBlock;
             String cB(codeBlock);
             if (cB == "class"){
-                fin>>className;
-                String cName(className);
+                fin>>FunctionName;
+                String cName(FunctionName);
                 //remove trailing semicolons
                 if (cName[cName.size()-1]==';'){
                     cName = cName.substring(0, cName.size()-1);
@@ -64,8 +65,8 @@ void ClassName::evaluate(const char * filePath){
                     cName = cName.substring(0, i);
                 }
 
-                //add class name to the vector of classNames
-                classNames.add(cName);
+                //add class name to the vector of FunctionNames
+                functionNames.add(cName);
             }
         }
 
@@ -80,11 +81,11 @@ void ClassName::evaluate(const char * filePath){
  * of each score type in an int array, with the index being the
  * score */
 //consider using a somewhat trivial hashtable instead of an array
-void ClassName::generateScore(){
+void FunctionName::generateScore(){
      int nameScore = 0;
      //loop through vector of class names
-     for (int i=0; i<classNames.size(); i++){
-         nameScore = evaluateClassName(classNames[i]);
+     for (int i=0; i<functionNames.size(); i++){
+         nameScore = evaluateFunctionName(functionNames[i]);
          //statement to assign score to int array
          scoreTracker[nameScore]++;
      }
@@ -107,7 +108,7 @@ void ClassName::generateScore(){
  * contain no numbers
  * not be in all caps
  */
-int ClassName::evaluateClassName(String cname){
+int FunctionName::evaluateFunctionName(String cname){
     int cnameScore=0;
     //check if it starts with an uppercase letter
     String firstLetter(cname);

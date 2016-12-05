@@ -15,7 +15,8 @@ HEADERS += \
     fileinfo.h \
     stack.hpp\
     linkedlist.hpp \
-    classname.h
+    classname.h \
+    functionname.h
 
 SOURCES += main.cpp \
     codeinmain.cpp \
@@ -25,5 +26,6 @@ SOURCES += main.cpp \
     loc.cpp \
     codeanalyzer.cpp \
     fileinfo.cpp \
-    classname.cpp
+    classname.cpp \
+    functionname.cpp
 

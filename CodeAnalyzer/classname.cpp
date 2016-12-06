@@ -37,6 +37,8 @@ void ClassName::printToFileVerbose(ofstream& out){
 }
 
 void ClassName::evaluate(const char * filePath){
+
+
     //variable to hold a line of code
     char codeBlock[100];
     char className[100];
@@ -100,6 +102,7 @@ void ClassName::evaluate(const char * filePath){
     } else {
         cout<<"Error. File failed to open"<<endl;
     }
+    //cout << "Class Name" <<endl;
 
 }
 

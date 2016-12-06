@@ -33,6 +33,7 @@ void Comments::printToFileVerbose(ofstream& out){
 }
 
 void Comments::evaluate(const char * filePath){
+
     //Get FileInfo, which will include the number of lines of code and of comments
     FileInfo info (filePath);
 

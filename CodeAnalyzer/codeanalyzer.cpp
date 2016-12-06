@@ -38,6 +38,7 @@ void CodeAnalyzer::writeOutput(const char * file, bool verbose){
     out.open(file);
     if (out.is_open()){
 
+
         //Print the overall score for the whole project
         out << "Average score: " << overallScore << endl <<endl;
 
@@ -85,6 +86,7 @@ void CodeAnalyzer::readDirectory (const char * loc){
                 //If file is one of the four recognized filetypes
                 //Loop through the array of metrics, calling evaluate() for each one
                 for (int i=0; i<NUM_METRICS; i++){
+                    cout << fullyQualifiedFilename <<endl;
                     metrics[i]->evaluate(fullyQualifiedFilename.c_str());
                 }
             }
